@@ -1,0 +1,127 @@
+<ion-header *ngIf="this.platform.dir() === 'rtl'" class="header" dir="ltr" no-border>
+  <ion-navbar class="ion-navbar" hideBackButton="true" color="darkprimary" *ngIf="!isSearchToggle">
+    <ion-buttons style="display: flex; direction: row;" end>
+      
+      <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()" start>
+          <ion-icon name="md-cart" *ngIf="this.mainFunc.manuno8 == false" [@cartBadge]="cartBadgeState"></ion-icon>
+          <ion-badge color="danger" *ngIf="mainFunc.getCartItemsNumber()" [@flyInOut]="cartBadgeState" item-end>{{mainFunc.getCartItemsNumber()}}</ion-badge>
+      </button>
+      
+    </ion-buttons>
+    <ion-title>{{ 'SEARCH' | translate:param }}</ion-title>
+    <!-- <img class="homeLogo" src="assets/img/homelogo.png"> -->
+    <ion-buttons style="display: flex; direction: row;" end>
+      <button ion-button menuToggle end>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <!-- <button ion-button (tap)="showSearchBar()" end>
+          <ion-icon name="search"></ion-icon>
+      </button> -->
+      
+      <span *ngIf="this.platform.dir() === 'rtl' && this.mainFunc.manuno8 == false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  
+      <span *ngIf="this.platform.dir() === 'ltr' && this.mainFunc.manuno8 == false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <button ion-button icon-only (tap)="dismissview()">
+        <ion-icon *ngIf="this.platform.dir() === 'rtl'" name="ios-arrow-back"></ion-icon>
+        <ion-icon *ngIf="this.platform.dir() === 'ltr'" name="ios-arrow-forward"></ion-icon>
+      </button>
+      
+    </ion-buttons>
+    
+  </ion-navbar>
+  <!-- <ion-toolbar class="toolbar" color="primary">
+    <ion-searchbar class="toolbar" placeholder="بحث" dir="rtl" (input)="getItems($event)"></ion-searchbar>
+  </ion-toolbar>
+ -->
+
+  <!-- <div class="serachDiv" dir= "{{direcR}}" *ngIf="isSearchToggle">
+    <ion-searchbar class="toolbarSearch" cancle-button="true" placeholder="بحث" (input)="searchBar($event)"></ion-searchbar>
+    <div class="searchButton">
+      <button ion-button color="fontWhite" (tap)="showSearchBar()" clear>
+          <ion-icon *ngIf="direc === 'ltr'" name="md-arrow-round-forward"></ion-icon>
+          <ion-icon *ngIf="direc === 'rtl'" name="md-arrow-round-back"></ion-icon>
+      </button>
+    </div>
+
+  </div> -->
+</ion-header>
+
+<ion-header *ngIf="this.platform.dir() === 'ltr'" dir="rtl" class="header" no-border>
+    <ion-navbar class="ion-navbar" hideBackButton="true" color="darkprimary" *ngIf="!isSearchToggle">
+      <ion-buttons style="display: flex; direction: row;" end>
+        <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()" start>
+            <ion-icon name="md-cart" *ngIf="this.mainFunc.manuno8 == false" [@cartBadge]="cartBadgeState"></ion-icon>
+            <ion-badge color="danger" *ngIf="mainFunc.getCartItemsNumber()" [@flyInOut]="cartBadgeState" item-end>{{mainFunc.getCartItemsNumber()}}</ion-badge>
+        </button>
+      </ion-buttons>
+      <ion-title>{{ 'SEARCH' | translate:param }}</ion-title>
+      <!-- <img class="homeLogo" src="assets/img/homelogo.png"> -->
+      <ion-buttons style="display: flex; direction: row;" end>
+<!-- 
+        <button ion-button (tap)="showSearchBar()" end>
+            <ion-icon name="search"></ion-icon>
+        </button> -->
+        <span *ngIf="this.platform.dir() === 'ltr' && this.mainFunc.manuno8 == false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <button ion-button icon-only (tap)="dismissview()">
+          <ion-icon *ngIf="this.platform.dir() === 'rtl'" name="ios-arrow-back"></ion-icon>
+          <ion-icon *ngIf="this.platform.dir() === 'ltr'" name="ios-arrow-forward"></ion-icon>
+        </button>
+      </ion-buttons>
+      
+    </ion-navbar>
+    
+  </ion-header>
+
+
+
+<ion-content>
+
+  <ion-row style="padding-left: 3px; padding-right: 8px;" no-lines no-padding>
+    <ion-col col-9 no-lines>
+      <ion-searchbar no-lines [(ngModel)]="searchTerm" placeholder="{{ 'SEARCH' | translate:param }}" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+    </ion-col>
+    <ion-col no-lines col-3>
+      <button ion-button style="width: fit-content;" color="darkprimary" (tap)="openSearchResultPage()">{{ 'SEARCH' | translate:param }}</button>    
+    </ion-col>
+  </ion-row>
+    
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+    </div>
+
+    <div class="itemDiv searchDivTitle" *ngIf='histSearchWords.length > 0 && histSearchWords != null && searchTerm.length < 2'>
+      <div class="icon_left"><ion-icon name="md-timer" item-start></ion-icon></div>
+      <div class="title_center">{{ 'SEARCH_HISTORY' | translate:param }}</div>
+      <div class="icon_right" (tap)="showDeleteHistoryConfirm()"><ion-icon name="ios-trash" item-start></ion-icon></div>
+    </div>
+    <ion-list *ngIf='histSearchWords.length > 0 && histSearchWords != null && searchTerm.length < 2' no-lines no-padding>
+        <ion-item *ngFor="let item of histSearchWords">
+            <div class="itemDiv">
+                <div><ion-icon name="md-time" item-start></ion-icon></div>
+                <div (tap)="openSearchResultPageSpacefic(item)">{{ item }}</div>
+            </div>
+        </ion-item>
+    </ion-list>
+
+  <ion-list *ngIf='type != "career" && type != "used_item"' no-lines no-padding>
+      <ion-item *ngFor="let item of items">
+        <div class="itemDiv">  
+          <div><ion-icon name="md-search" item-start></ion-icon></div>
+          <div (tap)="openSearchResultPageSpacefic(item.name_en)" *ngIf="this.platform.dir() === 'ltr'">{{ item.name_en }}</div>
+          <div (tap)="openSearchResultPageSpacefic(item.name_ar)" *ngIf="this.platform.dir() === 'rtl'">{{ item.name_ar }}</div>
+        </div>
+      </ion-item>
+  </ion-list>
+  <ion-list *ngIf='type === "career"' no-lines no-padding>
+    <ion-item *ngFor="let item of items">
+        <ion-icon name="md-search" item-start></ion-icon>
+        <div (tap)="openSearchResultPageSpacefic(item.title)">{{item.title}}</div>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf='type === "used_item"' no-lines no-padding>
+    <ion-item *ngFor="let item of items">
+        <ion-icon name="md-search" item-start></ion-icon>
+        <div (tap)="openSearchResultPageSpacefic(item.name)">{{item.name}}</div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

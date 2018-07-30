@@ -1,0 +1,76 @@
+page-search {
+
+    ion-content {
+        background-color: #ffffff!important;
+    }
+    
+
+    ion-row {
+        align-items: center;
+    }
+
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .itemDiv {
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        align-content: center;
+        align-self: center;
+    }
+    .searchDivTitle {
+        
+        color: #555555;
+        font-size: 1.0em;
+        font-weight: bold;
+
+        ion-icon {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .icon_left {
+            font-size: 1.2em;
+            color: #757575;
+            text-align: center;
+            width: 15%;
+        }
+        .title_center {
+            width: 70%;
+        }
+        .icon_right {
+            font-size: 1.2em;
+            color: #757575;
+            text-align: center;
+            width: 15%;
+        }
+
+    }
+    .list .item {
+        background-color: #ffffff;
+        // border-width: 1px;
+        // border-style: solid;
+        // border-color: #444;
+        color: #666666;
+        font-size: 1em;
+        
+
+        // padding: 0px;
+        margin: 0px;
+
+        .icon {
+            color: #777777;
+            font-size: 1.2em;
+          }
+      }
+      
+      .list {
+        margin-top:0%;
+      }
+      
+}

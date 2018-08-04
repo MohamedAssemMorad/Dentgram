@@ -1,24 +1,24 @@
 <ion-header *ngIf="this.platform.dir() === 'rtl'" class="header" dir="ltr" no-border>
     <ion-navbar class="ion-navbar" hideBackButton="true" color="darkprimary" *ngIf="!isSearchToggle">
-      <ion-buttons style="display: flex; direction: row;" end>
+      <ion-buttons style="display: flex; direction: row;" left>
         
-        <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()" start>
+        <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()">
             <ion-icon name="md-cart" *ngIf="this.mainFunc.manuno8 == false" [@cartBadge]="cartBadgeState"></ion-icon>
             <ion-badge color="danger" *ngIf="mainFunc.getCartItemsNumber()" [@flyInOut]="cartBadgeState" item-end>{{mainFunc.getCartItemsNumber()}}</ion-badge>
         </button>
-        
+        <button ion-button (tap)="showSearchBar()">
+            <ion-icon name="search"></ion-icon>
+        </button>
       </ion-buttons>
       <ion-title text-center>{{catName}}</ion-title>
       <!-- <ion-title>دانتجرام</ion-title> -->
       <!-- <img class="homeLogo" src="assets/img/homelogo.png"> -->
-      <ion-buttons style="display: flex; direction: row;" end>
-        <button ion-button menuToggle end>
+      <ion-buttons style="display: flex; direction: row;" right>
+        <button ion-button menuToggle>
           <!-- <ion-icon name="menu"></ion-icon> -->
       <img src="assets/img/avatar.png" class="avatar-menu-icon">
         </button>
-        <button ion-button (tap)="showSearchBar()" end>
-            <ion-icon name="search"></ion-icon>
-        </button>
+       
         
         <span *ngIf="this.platform.dir() === 'rtl' && this.mainFunc.manuno8 == false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  
         <span *ngIf="this.platform.dir() === 'ltr' && this.mainFunc.manuno8 == false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -49,20 +49,21 @@
   
   <ion-header *ngIf="this.platform.dir() === 'ltr'" dir="rtl" class="header" no-border>
       <ion-navbar class="ion-navbar" hideBackButton="true" color="darkprimary" *ngIf="!isSearchToggle">
-        <ion-buttons style="display: flex; direction: row;" end>
-          <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()" start>
+        <ion-buttons style="display: flex; direction: row;" left>
+          <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()">
               <ion-icon name="md-cart" *ngIf="this.mainFunc.manuno8 == false" [@cartBadge]="cartBadgeState"></ion-icon>
               <ion-badge color="danger" *ngIf="mainFunc.getCartItemsNumber()" [@flyInOut]="cartBadgeState" item-end>{{mainFunc.getCartItemsNumber()}}</ion-badge>
+          </button>
+          <button ion-button (tap)="showSearchBar()">
+              <ion-icon name="search"></ion-icon>
           </button>
         </ion-buttons>
         <!-- <ion-title>دانتجرام</ion-title> -->
         <ion-title text-center>{{catName}}</ion-title>
         <!-- <img class="homeLogo" src="assets/img/homelogo.png"> -->
-        <ion-buttons style="display: flex; direction: row;" end>
+        <ion-buttons style="display: flex; direction: row;" right>
   
-          <button ion-button (tap)="showSearchBar()" end>
-              <ion-icon name="search"></ion-icon>
-          </button>
+         
           <span *ngIf="this.platform.dir() === 'ltr' && this.mainFunc.manuno8 == false">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           <button ion-button icon-only (tap)="dismissview()">
             <ion-icon *ngIf="this.platform.dir() === 'rtl'" name="ios-arrow-back"></ion-icon>

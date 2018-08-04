@@ -2,8 +2,8 @@
 
   <ion-navbar color="darkprimary">
 
-      <ion-buttons style="display: flex; direction: row;" end>
-        <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()" start>
+      <ion-buttons style="display: flex; direction: row;" left>
+        <button ion-button *ngIf="this.mainFunc.manuno8 == false" (tap)="openCartPage2()" >
           <ion-icon name="md-cart" *ngIf="this.mainFunc.manuno8 == false" [@cartBadge]="cartBadgeState"></ion-icon>
           <ion-badge color="danger" *ngIf="mainFunc.getCartItemsNumber()" [@flyInOut]="cartBadgeState" item-end>{{mainFunc.getCartItemsNumber()}}</ion-badge>
       </button>

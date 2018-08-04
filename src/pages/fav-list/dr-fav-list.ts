@@ -72,7 +72,9 @@ export class FavoritePage {
 
 
   
-
+  dismissview(){
+    this.viewCtrl.dismiss();
+  }
     
 
     showSearchBar() {

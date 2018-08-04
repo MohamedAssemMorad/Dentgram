@@ -2,12 +2,11 @@
 <ion-header class="header" no-border>
     
   <ion-navbar color="darkprimary">
-    <ion-buttons style="display: flex; direction: row;" end>
+    <!-- <ion-buttons style="display: flex; direction: row;" right>
       <button ion-button menuToggle>
-          <!-- <ion-icon name="menu"></ion-icon> -->
       <img src="assets/img/avatar.png" class="avatar-menu-icon">
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>{{ 'AUTH_LOGIN_TITLE' | translate:param }}</ion-title>
   </ion-navbar>
 
@@ -19,7 +18,7 @@
       <div id="formcenter" [formGroup]="login" (ngSubmit)="openLoginUser()" >
         <ion-row>
           <ion-col>
-            <img src="assets/img/logo.png" />
+            <img src="assets/img/logo_lang.png" />
           </ion-col>
         </ion-row>
     

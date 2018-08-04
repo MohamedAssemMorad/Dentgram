@@ -1,8 +1,8 @@
 <ion-header *ngIf="this.platform.dir() === 'ltr'" class="header" dir="rtl" no-border>
   <ion-navbar class="ion-navbar" hideBackButton="true" color="darkprimary" *ngIf="!isSearchToggle">
     <ion-title text-center>{{ 'USED_TITLE_MASSAGES' | translate:param }}</ion-title>
-    <ion-buttons style="float: left;" start>
-      <button ion-button icon-only (tap)="dismissview(catId)" start>
+    <ion-buttons style="float: left;" right>
+      <button ion-button icon-only (tap)="dismissview(catId)" >
         <ion-icon *ngIf="this.platform.dir() === 'rtl'" name="ios-arrow-back"></ion-icon>
         <ion-icon *ngIf="this.platform.dir() === 'ltr'" name="ios-arrow-forward"></ion-icon>
       </button>  
@@ -13,8 +13,8 @@
 
 <ion-header *ngIf="this.platform.dir() === 'rtl'" class="header" dir="ltr" no-border>
   <ion-navbar class="ion-navbar" hideBackButton="true" color="darkprimary" *ngIf="!isSearchToggle">
-    <ion-buttons style="display: flex; direction: row;" end>
-      <button ion-button icon-only (tap)="dismissview(catId)" end>
+    <ion-buttons style="display: flex; direction: row;" right>
+      <button ion-button icon-only (tap)="dismissview(catId)">
         <ion-icon *ngIf="this.platform.dir() === 'rtl'" name="ios-arrow-back"></ion-icon>
         <ion-icon *ngIf="this.platform.dir() === 'ltr'" name="ios-arrow-forward"></ion-icon>
       </button>

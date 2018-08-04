@@ -160,10 +160,38 @@ $colors: (
 ion-content {
     // padding-bottom: 25px;
 }
+
 .avatar-menu-icon{ 
     height: 30px; 
     border-radius: 50%; 
 } 
+
+.fixed-header{
+    margin-top:56px;
+}
+
+.platform-webview.platform-ios.platform-cordova .fixed-header{
+    margin-top:76px;
+}
+
+.ion-content-below-slider-area{
+    margin-top:160px!important;
+}
+  
+.platform-webview.platform-ios.platform-cordova .ion-content-below-slider-area{
+    margin-top:180px;
+}
+
+.ion-content-below-slider-area-and-subheader{
+    margin-top:231px!important;
+    height: calc(100% - 231px);
+}
+  
+.platform-webview.platform-ios.platform-cordova .ion-content-below-slider-area-and-subheader{
+    margin-top:251px;
+    height: calc(100% - 251px);
+}
+
 ion-segment-button{
   border-radius: 0px!important;
   border: none!important;

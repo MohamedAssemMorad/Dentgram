@@ -85,18 +85,7 @@
   
     </div>
   </ion-header>
-
-
-<ion-content>
-  <div *ngIf="isSearchToggle">
-    <ion-list>
-      <ion-item *ngFor="let item of searchResults">
-        {{ item }}
-      </ion-item>
-    </ion-list>
-  </div>
-  <div *ngIf="!isSearchToggle">
-  <!--  Home Page Slider  -->
+  <div class="fixed-header">
       <div *ngIf="slider_Data_Store.length > 0" class="slide-img-size" dir="ltr">
           <div>
               <ion-slides speed="500" loop="true" spaceBewteen = "15" pager>
@@ -108,6 +97,19 @@
               </ion-slides>
           </div>
       </div>
+    </div>
+
+<ion-content [ngClass]="slider_Data_Store.length > 0? 'ion-content-below-slider-area': ''">
+  <div *ngIf="isSearchToggle">
+    <ion-list>
+      <ion-item *ngFor="let item of searchResults">
+        {{ item }}
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="!isSearchToggle">
+  <!--  Home Page Slider  -->
+      
 
  
       <div class="wrapper2">

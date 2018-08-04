@@ -86,8 +86,20 @@
       </div>
     </ion-header>
   
+    <div *ngIf="slider_Data_Store.length > 0" class="fixed-header  slide-img-size" dir="ltr">
+        <div>
+            <ion-slides speed="500" loop="true" spaceBewteen = "15" pager>
+                <ion-slide class="ion-slide" *ngFor = 'let slide of slider_Data_Store'>
+                    <div (click)="mainFunc.openSlider(slide.action)">
+                        <img class="slide-img-size" [ngClass]="{tablet: isTabletOriPad}" [src]="slide.img" >
+                    </div>
+                </ion-slide>
+            </ion-slides>
+        </div>
+    </div>
+
   
-  <ion-content>
+  <ion-content [ngClass]="slider_Data_Store.length > 0? 'ion-content-below-slider-area': ''">
     <div *ngIf="isSearchToggle">
       <ion-list>
         <ion-item *ngFor="let item of searchResults">
@@ -97,17 +109,7 @@
     </div>
     <div *ngIf="!isSearchToggle">
     <!--  Home Page Slider  -->
-        <div *ngIf="slider_Data_Store.length > 0" class="slide-img-size" dir="ltr">
-            <div>
-                <ion-slides speed="500" loop="true" spaceBewteen = "15" pager>
-                    <ion-slide class="ion-slide" *ngFor = 'let slide of slider_Data_Store'>
-                        <div (click)="mainFunc.openSlider(slide.action)">
-                            <img class="slide-img-size" [ngClass]="{tablet: isTabletOriPad}" [src]="slide.img" >
-                        </div>
-                    </ion-slide>
-                </ion-slides>
-            </div>
-        </div>
+        
   
    
       <div class="wrapper2">

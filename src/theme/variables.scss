@@ -153,12 +153,9 @@ $colors: (
 
 
 
-
-
-
-
 ion-content {
     // padding-bottom: 25px;
+
 }
 
 .avatar-menu-icon{ 
@@ -613,8 +610,7 @@ ion-card{
   }
 
 .footer {
-    font-family: "Hacen Saudi Arabia";
-    font-family: "Dubai Medium";
+    font-family: "roboto";
     // font-family: "Adobe Naskh Medium";
     // font-family: "KFGQPC Uthmantic Script HAFS";
     // font-family: "Amin Medium";
@@ -634,87 +630,87 @@ ion-card{
     background-color: color($colors, darkprimary);
 }
 .bg1 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   background: linear-gradient(to left bottom,  #424242 0%, #424242 100%);
   color: #ffffff;
 }
 .bg2 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   background: linear-gradient(to left bottom,  #00695C 0%, #00695C 100%);
   color: #ffffff;
 }
 .bg3 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   background: linear-gradient(to left bottom,  #37474F 0%, #37474F 100%);
   color: #ffffff;
 }
 .bg4 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   background: linear-gradient(to left bottom,  #dddddd  0%, #dddddd  100%);
   color: #616161;
 }
 .bg5 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   background: linear-gradient(to left bottom,  #b71c1c 0%, #b71c1c 100%);
   color: #ffffff;
 }
 .bg6 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   background: linear-gradient(to left bottom,  #0277BD 0%, #0277BD 100%);
   color: #ffffff;
 }
 
 .bg7 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   background: linear-gradient(to left bottom,  #1976D2 0%, #0062A7 100%);
   color: #ffffff;
 }
 
 .bg8 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     background: linear-gradient(to left bottom,  #F5F5F5 0%, #F5F5F5 100%);
     color: #616161;
   }
 
   .bg9 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     background: linear-gradient(to left bottom,  #0062a7 0%, #0062a7 100%);
     color: #ffffff;
   }
 
   .bg10 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     background: linear-gradient(to left bottom,  #fff 0%, #fff 100%);
     color: #616161;
   }
   .bg11 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     background: linear-gradient(to left bottom,  #E0E0E0 0%, #E0E0E0 100%);
     color: #424242;
     }
 .bg12 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     background: linear-gradient(to left bottom,  #ffc 0%, #ffc 100%);
     color: #424242;
     }
 .bg13 {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     background: linear-gradient(to left bottom,  #e9e9e9 0%, #e9e9e9 100%);
     color: #424242;
     }
 .bgwhite {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     background: linear-gradient(to left bottom,  #fff 0%, #fff 100%);
 }
   .bgerror{
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     // background: linear-gradient(to left bottom,  #fff 0%, #fff 100%);
     font-size: 13px;
     color: red;
   }
 
   .bgremember{
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
     // background: linear-gradient(to left bottom,  #fff 0%, #fff 100%);
     font-size: 13px !important;
     color: red !important;
@@ -743,7 +739,7 @@ ion-card{
       color: #222;
   }
   div, h1, h2, h3, h4, h5, h6, span {
-    font-family: "Dubai Regular" !important;
+    font-family: "roboto" !important;
   }
 
   .swiper-container{

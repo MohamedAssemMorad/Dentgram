@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { NavController, NavParams, ViewController, Platform } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Platform, Events } from 'ionic-angular';
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
@@ -17,15 +17,24 @@ export class StoresPage {
   direc: any;
   direcR: any;
   storelist: any[];
+  thumb: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public mainFunc: MainFunctionsProvider,
       public viewCtrl: ViewController,
       public translate: TranslateService,
       public platform: Platform,
-      public storage: Storage, 
+      public storage: Storage,
+      public events: Events, 
       private http: Http) {
       this.storelist = [];
+
+      events.subscribe('application:isLogged', (token) => {
+                  
+        this.storage.get('thumb').then((val) => {
+          this.thumb = val;
+        });
+      });
   }
 
   ionViewDidLoad() {

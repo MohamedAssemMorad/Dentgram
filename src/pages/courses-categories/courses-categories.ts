@@ -11,7 +11,7 @@ import 'rxjs/add/observable/interval';
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
 import { trigger, state, style, animate, transition, group, keyframes } from '@angular/animations';
 import { ItemDetailsPage } from "../../pages/item-details/item-details";
-
+import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AccountfPage } from "../../pages/accountf/accountf";
@@ -88,6 +88,7 @@ export class CoursesCategoriesPage {
   secretid = "";
   pagetitle = "";
   isDataAvilable = true;
+  thumb: string;
 
 
   @ViewChild(Slides) slides: Slides;
@@ -99,6 +100,7 @@ export class CoursesCategoriesPage {
           public platform: Platform,
             public translate: TranslateService,
               public events: Events,
+                public storage: Storage,
                 public navParams: NavParams) {
 
                 this.storelist = [];
@@ -110,6 +112,14 @@ export class CoursesCategoriesPage {
 
                 this.events.publish('application:language','');
                 this.viewCtrl.setBackButtonText('');
+
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                   
+                    this.thumb = val;
+                  });
+                });
 
   }
 

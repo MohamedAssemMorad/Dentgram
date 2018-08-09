@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/interval';
+import { Storage } from '@ionic/storage';
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 import { ItemDetailsPage } from "../../pages/item-details/item-details";
@@ -85,6 +86,7 @@ export class BuyCategoriesPage {
   storelist: any[];
   homemenu: any[];
   secretid = 'product';
+  thumb: string;
   
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, 
@@ -95,6 +97,7 @@ export class BuyCategoriesPage {
           public platform: Platform,
             public translate: TranslateService,
               public events: Events,
+                public storage: Storage,
                 public navParams: NavParams) {
 
                 this.storelist = [];
@@ -103,6 +106,14 @@ export class BuyCategoriesPage {
 
                 this.events.publish('application:language','');
                 this.viewCtrl.setBackButtonText('');
+
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                    this.thumb = val;
+                  });
+                  
+                });
   }
 
   ionViewDidEnter(){

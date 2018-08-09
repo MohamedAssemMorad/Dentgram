@@ -4,6 +4,7 @@
 
 
   import { Http } from '@angular/http';
+  import { Storage } from '@ionic/storage';
   import 'rxjs/add/operator/map';
   import { Observable } from 'rxjs/Observable';
   import 'rxjs/add/observable/from';
@@ -85,6 +86,7 @@ export class CatalogueMainPage {
   homemenu: any[];
   secretid = "";
   pagetitle = "";
+  thumb: string;
 
   isDataAvilable = true;
 
@@ -97,7 +99,8 @@ export class CatalogueMainPage {
           public platform: Platform,
             public translate: TranslateService,
               public events: Events,
-                public navParams: NavParams) {
+                public storage: Storage,
+                  public navParams: NavParams) {
 
                 this.storelist = [];
                 this.homemenu = [];
@@ -109,6 +112,14 @@ export class CatalogueMainPage {
 
                 this.events.publish('application:language','');
                 this.viewCtrl.setBackButtonText('');
+
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                    this.thumb = val;
+                  });
+                  
+                });
 
                 console.log(this.secretid);
                 

@@ -6,6 +6,7 @@ import { NavController, ViewController, NavParams, Slides, Platform, Events } fr
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { Storage } from '@ionic/storage';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/interval';
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
@@ -91,6 +92,7 @@ export class MatchMakingPage {
   secretid = "";
   pagetitle = "";
   isDataAvilable = true;
+  thumb: string;
 
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, 
@@ -101,6 +103,7 @@ export class MatchMakingPage {
           public platform: Platform,
             public translate: TranslateService,
               public events: Events,
+                public storage: Storage,
                 public navParams: NavParams) {
 
                 this.storelist = [];
@@ -112,6 +115,13 @@ export class MatchMakingPage {
                 
                 this.events.publish('application:language','');
                 this.viewCtrl.setBackButtonText('');
+
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                    this.thumb = val;
+                  });
+                });
 
   }
 

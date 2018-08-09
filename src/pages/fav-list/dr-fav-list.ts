@@ -49,6 +49,7 @@ export class FavoritePage {
   direc: any;
   direcR: any;
   homemenu: any[];
+  thumb: string;
   
   @ViewChild(Content)
   content:Content;
@@ -65,6 +66,14 @@ export class FavoritePage {
               public events: Events,
               private youtube: YoutubeVideoPlayer,
                 public navParams: NavParams) {
+
+                  events.subscribe('application:isLogged', (token) => {
+                  
+                    this.storage.get('thumb').then((val) => {
+                     
+                      this.thumb = val;
+                    });
+                  });
 
                 this.homemenu = ["ahmed","a","a","a","a","a"];
   }

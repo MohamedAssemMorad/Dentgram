@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { NavController, ViewController, NavParams, Platform } from 'ionic-angular';
+import { NavController, ViewController, NavParams, Platform, Events } from 'ionic-angular';
 
 //////////////////////////////////////////
 import { Http } from '@angular/http';
@@ -100,6 +100,7 @@ export class SearchResultPage {
 
   current_page: number;
   can_load_more: boolean = false;
+  thumb: string;
 
 
   constructor(public navCtrl: NavController,
@@ -108,6 +109,7 @@ export class SearchResultPage {
     public viewCtrl: ViewController,
     private http: Http,
     public storage: Storage,
+    public events: Events,
     private changeDetector: ChangeDetectorRef,
        public navParams: NavParams,
         public dataService: DataProvider) {
@@ -120,6 +122,13 @@ export class SearchResultPage {
           this.homemenu = [];
 
           this.mainFunc.addItemToHistory(this.secretid,this.query);
+
+          events.subscribe('application:isLogged', (token) => {
+                  
+            this.storage.get('thumb').then((val) => {
+              this.thumb = val;
+            });
+          });
   }
 
 

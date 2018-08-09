@@ -108,6 +108,7 @@ export class HomePage {
   isAppPrefLoaded: boolean = false;
   pages: any[];
   secretids: any[];
+  thumb: string;
 
   OnLoadButton: boolean = true;
 
@@ -148,6 +149,14 @@ export class HomePage {
                 ];
                 // this.chkconn.disconnectSubscription;
                 // this.chkconn.connectSubscription;
+                
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                   
+                    this.thumb = val;
+                  });
+                });
                 
                 this.storage.get('pass_reqister').then( data => {
                   if(data){

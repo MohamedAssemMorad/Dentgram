@@ -96,6 +96,7 @@ export class UsedAdsSubMenuPage {
   city_id: any;
   secretid = "";
   pagetitle = "";
+  thumb: string;
 
 
   @ViewChild(Slides) slides: Slides;
@@ -113,6 +114,13 @@ export class UsedAdsSubMenuPage {
                 this.storelist = [];
                 this.homemenu = [];
                 this.slider_Data_Store = [];
+
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                    this.thumb = val;
+                  });
+                });
 
                 this.secretid = this.navParams.get('secretid');
                 this.pagetitle = this.navParams.get('pagetitle');

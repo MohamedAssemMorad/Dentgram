@@ -16,7 +16,7 @@
       <ion-buttons style="display: flex; direction: row;" right>
         <button ion-button menuToggle>
           <!-- <ion-icon name="menu"></ion-icon> -->
-      <img src="assets/img/avatar.png" class="avatar-menu-icon">
+      <img [src]="this.thumb == null ? 'assets/img/avatar.png' : this.thumb" onerror="src = 'assets/img/avatar.png'" class="avatar-menu-icon">
         </button>
        
         

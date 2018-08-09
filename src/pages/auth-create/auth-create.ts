@@ -30,6 +30,7 @@ export class AuthCreatePage {
   age_error:boolean = false;
   phone_error:boolean = false;
   gender_error:boolean = false;
+  thumb: string;
 
   shouldAuth: boolean = false;
 
@@ -48,7 +49,14 @@ export class AuthCreatePage {
       private formBuilder: FormBuilder) {
 
  
-        
+        events.subscribe('application:isLogged', (token) => {
+          
+          this.storage.get('thumb').then((val) => {
+            console.log("imageeee")
+            console.log(val)
+            this.thumb = val;
+          });
+        });
 
         this.viewCtrl.setBackButtonText('');
         this.dir = this.platform.dir();

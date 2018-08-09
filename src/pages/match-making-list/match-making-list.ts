@@ -102,7 +102,7 @@ export class MatchMakingListPage {
 
   current_page: number;
   can_load_more: boolean = false;
-
+  thumb: string;
 
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, 
@@ -130,6 +130,13 @@ export class MatchMakingListPage {
 
                 this.events.publish('application:language','');
                 this.viewCtrl.setBackButtonText('');
+
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                    this.thumb = val;
+                  });
+                });
   }
 
   ionViewDidEnter(){

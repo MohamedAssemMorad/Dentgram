@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/interval';
+import { Storage } from '@ionic/storage';
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
 import { trigger, state, style, animate, transition, group, keyframes } from '@angular/animations';
 import { ItemDetailsPage } from "../../pages/item-details/item-details";
@@ -89,6 +90,7 @@ export class BooksListPage {
   catName: string;
   catId: string;
   secretid = 'library';
+  thumb: string;
 
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, 
@@ -98,12 +100,20 @@ export class BooksListPage {
         private changeDetector: ChangeDetectorRef,
           public platform: Platform,
             public translate: TranslateService,
+            public storage: Storage,
               public events: Events,
                 public navParams: NavParams) {
 
                 this.storelist = [];
                 this.homemenu = [];
                 this.slider_Data_Store = [];
+
+                events.subscribe('application:isLogged', (token) => {
+          
+                  this.storage.get('thumb').then((val) => {
+                    this.thumb = val;
+                  });
+                });
 
                 this.catName = this.navParams.get('name');
                 this.catId = this.navParams.get('id');

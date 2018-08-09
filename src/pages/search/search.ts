@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController, AlertController, NavParams, Platform } from 'ionic-angular';
+import { NavController, ViewController, AlertController, NavParams, Platform, Events } from 'ionic-angular';
 
 //////////////////////////////////////////
 // import { Http } from '@angular/http';
@@ -83,15 +83,24 @@ export class SearchPage {
   items: any;
   searching: any = false;
   histSearchWords: any[];
+  thumb: string;
 
   constructor(public navCtrl: NavController,
     public mainFunc: MainFunctionsProvider,
     public platform: Platform,
     public viewCtrl: ViewController,
     public storage: Storage,
+    public events: Events,
     public alertCtrl: AlertController,
        public navParams: NavParams,
         public dataService: DataProvider) {
+
+          events.subscribe('application:isLogged', (token) => {
+                  
+            this.storage.get('thumb').then((val) => {
+              this.thumb = val;
+            });
+          });
 
         this.searchControl = new FormControl();
         this.type = this.navParams.get('type');

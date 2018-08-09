@@ -103,6 +103,7 @@ export class CoursesListPage {
   pagetitle = "";
   isDataAvilable = true;
   libraryType = 'books';
+  thumb: string;
    
 
   current_page: number;
@@ -130,6 +131,14 @@ export class CoursesListPage {
                 this.storelist = [];
                 this.homemenu = [];
                 this.slider_Data_Store = [];
+
+                events.subscribe('application:isLogged', (token) => {
+                  
+                  this.storage.get('thumb').then((val) => {
+                   
+                    this.thumb = val;
+                  });
+                });
 
                 this.catName = this.navParams.get('name');
                 

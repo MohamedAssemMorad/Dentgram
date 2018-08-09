@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { NavController, NavParams, ViewController, Platform } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Platform, Events } from 'ionic-angular';
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
@@ -25,6 +25,7 @@ export class BrandsPage {
   isDataAvilable = false;
   current_page: number;
   can_load_more: boolean = false;
+  thumb: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public mainFunc: MainFunctionsProvider,
@@ -32,9 +33,19 @@ export class BrandsPage {
       public translate: TranslateService,
       public platform: Platform,
       public storage: Storage, 
+      public events: Events,
       private http: Http) {
+        
       this.storelist = [];
       this.storelistalldata = [];
+
+      events.subscribe('application:isLogged', (token) => {
+      
+        this.storage.get('thumb').then((val) => {
+          this.thumb = val;
+        });
+        
+      });
   }
 
   ionViewDidLoad() {

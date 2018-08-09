@@ -123,10 +123,12 @@ export class MyApp {
                                 console.log('is Logged in = false');
                               }
                               this.storage.get('thumb').then((val) => {
+                                console.log("imageeee")
+                                console.log(val)
                                 this.thumb = val;
                               });
                               this.storage.get('name').then((val) => {
-                                console.log("imageeee")
+                                console.log("nameeeee")
                                 console.log(val)
                                 this.Dfirst_name = val;
                               });

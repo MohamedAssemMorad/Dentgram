@@ -178,7 +178,7 @@ export class CatalogueMainPage {
       localHomeMenudata2.subscribe(data => {
 
 
-        console.log('Remote Catalogue = ' + data);
+        console.log('Remote Catalogue = ' + JSON.stringify(data));
         let data2: any[];
         data2 = [];
         if(data.slides){
@@ -222,9 +222,10 @@ export class CatalogueMainPage {
       let localHomeMenudata = this.http.get('assets/cataloguelist.json').map(res => res.json());
       localHomeMenudata.subscribe(data => {
         console.log('Catalogue = ' + data);
+        console.log('Catalogue = ' + data.slider);
         // this.homemenu = data.categories;
         // let slider_data = data.slider;
-        // this.slider_Data_Store = slider_data;
+        this.slider_Data_Store = data.slider;
         // this.number_of_sliders = slider_data.length;
 
       });

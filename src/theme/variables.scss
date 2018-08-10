@@ -493,6 +493,18 @@ ion-segment-button{
 
 }
 
+.radio-checked{
+    border-color: #0061a5 !important;
+}
+
+.radio-inner{
+    background-color: #0061a5 !important;
+}
+
+.item-radio-checked.item-md ion-label, ion-select .select-text{
+    color:#0061a5 !important;
+}
+
 .fixed-content{
   background: #eee;
 }

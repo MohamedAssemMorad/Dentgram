@@ -84,6 +84,9 @@ export class SearchPage {
   searching: any = false;
   histSearchWords: any[];
   thumb: string;
+  filterOptions: string[] = [];
+  showFilter: boolean = false;
+  filterBy: string;
 
   constructor(public navCtrl: NavController,
     public mainFunc: MainFunctionsProvider,
@@ -134,7 +137,9 @@ export class SearchPage {
 
   ionViewWillEnter(){ 
     this.callHistorysearches();
+    this.prepareFilter();
   }
+  
   ionViewDidLoad() {
 
     if (this.platform.dir() === "rtl") {
@@ -155,6 +160,29 @@ export class SearchPage {
     });
 
     
+  }
+
+  prepareFilter() {
+    let prevPageName = this.navCtrl.getPrevious().name;
+    let prevSecretId = this.navCtrl.getPrevious().data.secretid;
+    if (prevPageName.indexOf("Courses") > -1) {
+      if (prevSecretId.indexOf("course") > -1) {
+        this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER", "COURSE_PROVIDER_FILTER"];
+        this.showFilter = true;
+      } else if (prevSecretId.indexOf("event") > -1) {
+        this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
+        this.showFilter = true;
+      }else if (prevSecretId.indexOf("librar") > -1) {
+        this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
+        this.showFilter = true;
+      }
+    }else if (prevPageName.indexOf("UsedAds") > -1) {
+      this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER"];
+      this.showFilter = true;
+    }
+  }
+  onFilterByChange(selectedValue: any){
+    console.log("filterBy", this.filterBy, selectedValue);
   }
 
   dismissview(){

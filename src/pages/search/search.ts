@@ -24,49 +24,49 @@ import { SearchResultPage } from "../../pages/search-result/search-result";
   templateUrl: 'search.html',
   animations: [
     trigger('cartBadge', [
-        state('idle', style({
-            opacity: '1',
-            transform: 'scale(1)'
-        })),
-        state('adding', style({
-            opacity: '0.5',
-            transform: 'scale(1.4)'
-        })),
-        transition('idle <=> adding', animate('300ms linear')),
-        transition('void => *', [
-            style({transform: 'translateX(200%)'}),
-            animate('500ms ease-in-out')
-        ])
+      state('idle', style({
+        opacity: '1',
+        transform: 'scale(1)'
+      })),
+      state('adding', style({
+        opacity: '0.5',
+        transform: 'scale(1.4)'
+      })),
+      transition('idle <=> adding', animate('300ms linear')),
+      transition('void => *', [
+        style({ transform: 'translateX(200%)' }),
+        animate('500ms ease-in-out')
+      ])
     ]),
     trigger('addButton', [
-        state('idle', style({
-            // opacity: '1'
-        })),
-        state('adding', style({
-            // opacity: '0.3',
-            //fontWeight: 'bold'
-        })),
-        transition('idle <=> adding', animate('500ms linear')),
-        transition('void => *', [
-            // style({transform: 'translateX(200%)'}),
-            // animate('300ms ease-in-out')
-        ])
+      state('idle', style({
+        // opacity: '1'
+      })),
+      state('adding', style({
+        // opacity: '0.3',
+        //fontWeight: 'bold'
+      })),
+      transition('idle <=> adding', animate('500ms linear')),
+      transition('void => *', [
+        // style({transform: 'translateX(200%)'}),
+        // animate('300ms ease-in-out')
+      ])
     ])
-,
+    ,
     trigger('flyInOut', [
-      state('cartBadge', style({transform: 'translateX(0)'})),
+      state('cartBadge', style({ transform: 'translateX(0)' })),
       transition('void => *', [
         animate(500, keyframes([
-          style({opacity: 1, transform: 'translateX(100%)', offset: 0.1}),
-          style({opacity: 1, transform: 'translateX(-15px)', offset: 0.3}),
-          style({opacity: 1, transform: 'translateX(0)', offset: 0.5}),
-          style({opacity: 1, transform: 'translateX(-100%)', offset: 0.7}),
-          style({opacity: 1, transform: 'translateX(15px)',  offset: 0.9}),
-          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+          style({ opacity: 1, transform: 'translateX(100%)', offset: 0.1 }),
+          style({ opacity: 1, transform: 'translateX(-15px)', offset: 0.3 }),
+          style({ opacity: 1, transform: 'translateX(0)', offset: 0.5 }),
+          style({ opacity: 1, transform: 'translateX(-100%)', offset: 0.7 }),
+          style({ opacity: 1, transform: 'translateX(15px)', offset: 0.9 }),
+          style({ opacity: 1, transform: 'translateX(0)', offset: 1.0 })
         ]))
       ])
     ])
-]
+  ]
 })
 export class SearchPage {
 
@@ -77,7 +77,6 @@ export class SearchPage {
   cartBadgeState: string = 'idle';
   isPassReqister = false;
   searchQuery: string = '';
-
   searchTerm: string = '';
   searchControl: FormControl;
   items: any;
@@ -95,71 +94,61 @@ export class SearchPage {
     public storage: Storage,
     public events: Events,
     public alertCtrl: AlertController,
-       public navParams: NavParams,
-        public dataService: DataProvider) {
+    public navParams: NavParams,
+    public dataService: DataProvider) {
 
-          events.subscribe('application:isLogged', (token) => {
-                  
-            this.storage.get('thumb').then((val) => {
-              this.thumb = val;
-            });
-          });
+    events.subscribe('application:isLogged', (token) => {
+      this.storage.get('thumb').then((val) => {
+        this.thumb = val;
+      });
+    });
 
-        this.searchControl = new FormControl();
-        this.type = this.navParams.get('type');
-        
-        if(this.type == 'for_catalogue'){
-          this.type = 'product';
-        }else if(this.type == 'job'){
-          this.type = 'career';
-        }else if(this.type == 'for_store'){
-          this.type = 'item';
-        }else if(this.type == 'for_used'){
-          this.type = 'used_item';
-        }
+    this.searchControl = new FormControl();
+    this.type = this.navParams.get('type');
 
-        
-        // console.log('Hist List Items = ' + this.histSearchWords);
-        this.callHistorysearches();
+    if (this.type == 'for_catalogue') {
+      this.type = 'product';
+    } else if (this.type == 'job') {
+      this.type = 'career';
+    } else if (this.type == 'for_store') {
+      this.type = 'item';
+    } else if (this.type == 'for_used') {
+      this.type = 'used_item';
+    }
+
+    // console.log('Hist List Items = ' + this.histSearchWords);
+    this.callHistorysearches();
 
   }
 
   callHistorysearches() {
-
     this.histSearchWords = [];
-      this.storage.get('hist_' + this.type).then((val) =>{
-        if (val != null){
-          this.histSearchWords = val; 
-        }else{
-        }
-      });
+    this.storage.get('hist_' + this.type).then((val) => {
+      if (val != null) {
+        this.histSearchWords = val;
+      }
+    });
   }
 
-  ionViewWillEnter(){ 
+  ionViewWillEnter() {
     this.callHistorysearches();
     this.prepareFilter();
   }
-  
-  ionViewDidLoad() {
 
+  ionViewDidLoad() {
     if (this.platform.dir() === "rtl") {
       this.direc = "ltr";
       this.direcR = "rtl"
     } else {
       this.direc = "rtl";
-      this.direcR = "ltr";  
+      this.direcR = "ltr";
     }
 
     this.searchControl.valueChanges.debounceTime(500).subscribe(search => {
- 
-      if(this.searchTerm.length > 1){
-        
+      if (this.searchTerm.length > 1) {
         this.setFilteredItems();
       }
-      
     });
-
-    
   }
 
   prepareFilter() {
@@ -172,63 +161,73 @@ export class SearchPage {
       } else if (prevSecretId.indexOf("event") > -1) {
         this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
         this.showFilter = true;
-      }else if (prevSecretId.indexOf("librar") > -1) {
+      } else if (prevSecretId.indexOf("librar") > -1) {
         this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
         this.showFilter = true;
       }
-    }else if (prevPageName.indexOf("UsedAds") > -1) {
+    } else if (prevPageName.indexOf("UsedAds") > -1) {
       this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER"];
       this.showFilter = true;
     }
   }
-  onFilterByChange(selectedValue: any){
+
+  onFilterByChange(selectedValue: any) {
     console.log("filterBy", this.filterBy, selectedValue);
+    this.setFilteredItems();
   }
 
-  dismissview(){
+  dismissview() {
     this.viewCtrl.dismiss();
   }
 
   setFilteredItems() {
     this.items = [];
-    
+
     this.storage.get('city_id').then(city_id => {
+      console.log(this.searchTerm, this.type, city_id, this.filterBy);
+      let datarecived;
 
-      let datarecived = this.dataService.filterItems(this.searchTerm,this.type,city_id);
-
+      if(this.filterBy){
+        datarecived = this.dataService.filterItemsBy(this.searchTerm, this.type, city_id, this.filterBy);
+      }else{
+        datarecived = this.dataService.filterItems(this.searchTerm, this.type, city_id);
+      }
+      
       datarecived.subscribe(data => {
-              this.items = data;
-              this.searching = false;
-              console.log('Search : ' + this.items);
-            });
-          });
+        this.items = data;
+        this.searching = false;
+        console.log("items", this.items);
+        console.log('Search : ' + this.items);
+      });
+    });
   }
 
-  onSearchInput(){
+  onSearchInput() {
     this.items = [];
-    if(this.searchTerm.length > 1){
+    if (this.searchTerm.length > 1) {
       this.searching = true;
     }
   }
 
-  openSearchResultPage(){
+  openSearchResultPage() {
+    console.log("type", this.type, "searchTerm", this.searchTerm);
     this.navCtrl.push(SearchResultPage, {
-      'type' : this.type,
+      'type': this.type,
       'query': this.searchTerm
     });
   }
 
-  openSearchResultPageSpacefic(name){
+  openSearchResultPageSpacefic(name) {
     this.navCtrl.push(SearchResultPage, {
-      'type' : this.type,
+      'type': this.type,
       'query': name
     });
   }
 
   openCartPage2() {
     this.navCtrl.push(AccountfPage, {
-      'select' : '1'
-    });   
+      'select': '1'
+    });
   }
 
   showDeleteHistoryConfirm() {

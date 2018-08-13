@@ -33,16 +33,16 @@ export class DataProvider {
     let Url_request = this.mainFunc.url + "/api/search?query=" + searchTerm + '&type=' + Type + '&limit=10&city_id=' + city_id;
     switch (filterby) {
       case 'CATEGORY_FILTER':
-        Url_request += "&category='" + searchTerm;
+        Url_request += "&filterBy=category";
         break;
       case 'LOCATION_FILTER':
-        Url_request += "&location='" + searchTerm;
+        Url_request += "&filterBy=location";
         break;
       case 'DATE_FILTER':
-        Url_request += "&date='" + searchTerm;
+        Url_request += "&filterBy=date";
         break;
       case 'COURSE_PROVIDER_FILTER':
-        Url_request += "&courseprovider='" + searchTerm;
+        Url_request += "&filterBy=courseProvider";
         break;
     }
     console.log(Url_request);

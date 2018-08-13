@@ -96,7 +96,7 @@ export class SearchResultPage {
   mobwidth: any;
   mobheight: any;
   isDataAvilable = true;
-
+  filterBy: string;
 
   current_page: number;
   can_load_more: boolean = false;
@@ -118,7 +118,8 @@ export class SearchResultPage {
 
           this.secretid = this.navParams.get('type');
           this.query = this.navParams.get('query');
-          
+          this.filterBy = this.navParams.get('filterBy');
+
           this.homemenu = [];
 
           this.mainFunc.addItemToHistory(this.secretid,this.query);
@@ -150,8 +151,25 @@ export class SearchResultPage {
     console.log('This is --- : ' + this.secretid + ' : --- Mode');
 
     this.storage.get('city_id').then(city_id => {
-
       this.url = this.mainFunc.url + '/api/search?query=' + this.query + '&type=' + this.secretid + '&limit=10&filters=&result=1&city_id=' + city_id;
+      if(this.filterBy){
+        switch (this.filterBy) {
+          case 'CATEGORY_FILTER':
+          this.url += "&filterBy=category";
+            break;
+          case 'LOCATION_FILTER':
+          this.url += "&filterBy=location";
+            break;
+          case 'DATE_FILTER':
+          this.url += "&filterBy=date";
+            break;
+          case 'COURSE_PROVIDER_FILTER':
+          this.url += "&filterBy=courseProvider";
+            break;
+        }
+      }
+      console.log('ionViewDidLoad URL' ,  this.url);
+
 
        // Run The Correct Code Depend on type
       switch (this.secretid) {
@@ -989,7 +1007,24 @@ export class SearchResultPage {
         this.storage.get('city_id').then(city_id => {
 
           this.url = this.mainFunc.url + '/api/search?query=' + this.query + '&type=' + this.secretid + '&limit=10&filters=&result=1&city_id=' + city_id + '?page=' + (this.current_page + 1);
-    
+          if(this.filterBy){
+            switch (this.filterBy) {
+              case 'CATEGORY_FILTER':
+              this.url += "&filterBy=category";
+                break;
+              case 'LOCATION_FILTER':
+              this.url += "&filterBy=location";
+                break;
+              case 'DATE_FILTER':
+              this.url += "&filterBy=date";
+                break;
+              case 'COURSE_PROVIDER_FILTER':
+              this.url += "&filterBy=courseProvider";
+                break;
+            }
+          }
+          console.log('doInfinite URL' ,  this.url);
+
            // Run The Correct Code Depend on type
           switch (this.secretid) {
             

@@ -213,7 +213,8 @@ export class SearchPage {
     console.log("type", this.type, "searchTerm", this.searchTerm);
     this.navCtrl.push(SearchResultPage, {
       'type': this.type,
-      'query': this.searchTerm
+      'query': this.searchTerm,
+      'filterBy': this.filterBy
     });
   }
 

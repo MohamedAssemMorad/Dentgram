@@ -50,10 +50,14 @@
           </button>
         </ion-col>
         <ion-col text-center>
-          <button ion-button clear small  icon-start>
-            <ion-icon name='md-heart'></ion-icon>
-          </button>
-        </ion-col>
+            <button ion-button clear small icon-start *ngIf="!mainFunc.checkItemInFav(allData.id)" (click)="addToFav(allData.id)">
+              <ion-icon  name ="heart-outline" ></ion-icon>
+            </button>
+
+            <button ion-button clear small icon-start *ngIf="mainFunc.checkItemInFav(allData.id)" (click)="removeFromFav(allData.id)">
+                <ion-icon  name ="md-heart" ></ion-icon>
+            </button>
+          </ion-col>
       </ion-row>
 
 

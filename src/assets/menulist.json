@@ -22,7 +22,7 @@
             "ar": "القائمة المفضلة",
             "en": "Favorite List",
             "sub": false,
-            "logged" : false,
+            "logged" : true,
             "ctrl": 0,
             "icon": "assets/icon/icon-fav.png",
             "pagename": "FavoritePage"

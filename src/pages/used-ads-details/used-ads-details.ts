@@ -83,6 +83,7 @@ export class UsedAdsDetailsPage {
   height: any;
   weight: any;
   category_id: any;
+  product_id: any;
   phone: any;
   category_name: any;
   category_display_name: any;
@@ -157,7 +158,7 @@ export class UsedAdsDetailsPage {
         if (data.id != null && data.id != ''){
 
           this.isDataAvilable = true; 
-          
+          this.product_id = data.id;
           this.category_id = data.category.id;
           this.category_icon_full = data.category.icon.full;
           this.category_icon_thumb = data.category.icon.thumb;

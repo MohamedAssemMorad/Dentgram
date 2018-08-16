@@ -60,6 +60,20 @@
             <!-- <a href="mailto:{{ contact_email }}" id="email" style="display: none">{{ contact_email }}</a> -->
         </div>
       </div>
+
+      <div class="cl1">
+
+          <button class="canMessage" ion-button clear small icon-start *ngIf="!mainFunc.checkItemInFav(product_id)" (click)="mainFunc.addToFav(product_id)">
+              <ion-icon  name ="heart-outline" ></ion-icon>
+            </button>
+    
+            <button class="canMessage" ion-button clear small icon-start *ngIf="mainFunc.checkItemInFav(product_id)" (click)="mainFunc.deleteFromFav(product_id)">
+                <ion-icon  name ="md-heart" ></ion-icon>
+            </button>
+        
+      </div>
+
+    
     </div>
   </div>
   <div>

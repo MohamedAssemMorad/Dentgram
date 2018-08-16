@@ -169,7 +169,7 @@ export class CoursesDetailsPage {
     this.mainFunc.addToFav(item);
   }
   removeFromFav(item){
-
+    this.mainFunc.deleteFromFav(item);
   }
   openItemDetails(id) {
     // this.navCtrl.push(ItemDetailsPage);

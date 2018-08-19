@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController, AlertController, NavParams, Platform, Events } from 'ionic-angular';
+import { NavController, ViewController, AlertController, NavParams, Platform, Events, LoadingController } from 'ionic-angular';
+
+
+
 
 //////////////////////////////////////////
-// import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
+
 import 'rxjs/add/operator/map';
-// import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
+
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
 // import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
@@ -86,6 +92,11 @@ export class SearchPage {
   filterOptions: string[] = [];
   showFilter: boolean = false;
   filterBy: string;
+  city_list = [];
+  city_list_ar = [];
+  city_list_en = [];
+  loader: any;
+  allData = [];
 
   constructor(public navCtrl: NavController,
     public mainFunc: MainFunctionsProvider,
@@ -95,7 +106,9 @@ export class SearchPage {
     public events: Events,
     public alertCtrl: AlertController,
     public navParams: NavParams,
-    public dataService: DataProvider) {
+    public dataService: DataProvider,
+    public loadingController: LoadingController,
+    private http: Http,) {
 
     events.subscribe('application:isLogged', (token) => {
       this.storage.get('thumb').then((val) => {
@@ -118,7 +131,55 @@ export class SearchPage {
 
     // console.log('Hist List Items = ' + this.histSearchWords);
     this.callHistorysearches();
+  }
 
+  getCities (){
+        let url = this.mainFunc.url + '/api/auth/register';
+        this.showLoading('', true);
+        let localdata_content = this.http.get(url).map(res => res.json().countries);
+        
+        localdata_content.subscribe(data => {
+          if (data.length > 0){
+            this.dismissLoading();
+          }
+
+          this.allData = data;
+
+          let id;
+        for (let index = 0; index < this.allData.length; index++) {
+          const element = this.allData[index];
+          if (element.name_en === 'Egypt') {
+            id = index;
+            break;
+          }
+        }
+
+        this.city_list = this.allData[id].cities;
+        });
+
+        
+
+        
+  }
+
+  showLoading(message: string, state: boolean){
+      
+    this.loader = this.loadingController.create({
+      content: message
+    });  
+  
+    if(!state){
+      this.dismissLoading(); 
+    }else{
+      this.loader.present();
+    }
+    
+  }
+
+  dismissLoading(){
+    setTimeout(() => {
+      this.loader.dismiss();
+    }, 50);
   }
 
   callHistorysearches() {
@@ -173,6 +234,9 @@ export class SearchPage {
 
   onFilterByChange(selectedValue: any) {
     console.log("filterBy", this.filterBy, selectedValue);
+    if(selectedValue === 'LOCATION_FILTER')
+      this.getCities();
+
     this.setFilteredItems();
   }
 

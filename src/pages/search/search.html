@@ -85,6 +85,17 @@
         </ion-select>
       </ion-item>
     </ion-col>
+
+    <ion-col *ngIf="city_list">
+      <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>
+        <ion-label class="bg10">choose city</ion-label>
+        <ion-select interface="popover" class="bg10"  dir="{{dir}}">
+          <ion-option *ngFor="let c of city_list; let i = index" [value]="c" >{{ c.name_en }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+
+
     <ion-col col-9 no-lines>
       <ion-searchbar no-lines [(ngModel)]="searchTerm" placeholder="{{ 'SEARCH' | translate:param }}" [formControl]="searchControl"
         (ionInput)="onSearchInput()"></ion-searchbar>
@@ -93,6 +104,18 @@
       <button ion-button style="width: fit-content;" color="darkprimary" (tap)="openSearchResultPage()">{{ 'SEARCH' | translate:param }}</button>
     </ion-col>
   </ion-row>
+
+ 
+  <!-- <ion-row *ngIf="dir === 'rtl'">
+    <ion-col>
+      <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>
+        <ion-label class="bg10">{{lab_city}}</ion-label>
+        <ion-select class="bg10" formControlName="city_selected_ar" dir="{{dir}}">
+          <ion-option *ngFor="let c of city_list; let i = index" [value]="c.id" dir="{{dir}}">{{ c.name_en }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
 
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>

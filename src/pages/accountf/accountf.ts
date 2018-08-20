@@ -20,7 +20,6 @@ export class AccountfPage {
     public translate: TranslateService,
     public platform: Platform) {
     
-      console.log(params.get('select'));
       this.selected_tab = params.get('select');
   }
 

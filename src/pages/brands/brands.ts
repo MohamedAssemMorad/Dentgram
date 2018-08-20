@@ -63,7 +63,6 @@ export class BrandsPage {
     let url = this.mainFunc.url + '/api/structure/brands'
     let localHomeMenudata2 = this.http.get(url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Brands = ' + dataall);
       let data = dataall.brands;
       this.storelistalldata = data;
       this.records = data.length;
@@ -84,7 +83,6 @@ export class BrandsPage {
     let url = this.mainFunc.url + '/api/structure/brands' + '?page=' + (this.current_page + 1);
     let localHomeMenudata2 = this.http.get(url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      // console.log('Remote Brands = ' + dataall);
       let data = dataall.brands;
 
       // this.storelistalldata = data;
@@ -105,7 +103,6 @@ export class BrandsPage {
     });
   }
   // doInfinite(): Promise<any> {
-  //   console.log('Begin async operation');
 
   //   return new Promise((resolve) => {
   //     setTimeout(() => {
@@ -133,7 +130,6 @@ export class BrandsPage {
   //       };
 
       
-  //       console.log('Async operation has ended');
   //       resolve();
   //     }, 1000);
   //   })
@@ -141,7 +137,6 @@ export class BrandsPage {
 
   doInfinite(infiniteScroll) {
     if(this.can_load_more){
-      // console.log('Begin async operation');
       setTimeout(() => {
         this.loadNextPage();
         infiniteScroll.complete();

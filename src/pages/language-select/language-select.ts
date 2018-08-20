@@ -75,12 +75,10 @@ export class LanguageSelectPage {
             if (navigator.onLine){
               // this.authClass.showLoading('Loading Data',true);
               let url = this.mainFunc.url + '/api/auth/register';
-              // console.log(url);
               this.showLoading('', true);
               let localdata_content = this.http.get(url).map(res => res.json().countries);
               // let localdata_content = this.http.get('assets/countries.json').map(res => res.json().countries);
               localdata_content.subscribe(data => {
-                console.log(data);
 
                 if (data.length > 0){
                   this.dismissLoading();
@@ -97,7 +95,7 @@ export class LanguageSelectPage {
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad LanguageSelectPage');
+     console.log('ionViewDidLoad LanguageSelectPage');
   }
 
   change_city(lang) {
@@ -127,8 +125,6 @@ export class LanguageSelectPage {
 
     this.city_list = this.allData[id].cities;
     
-    // console.log(id);
-    // console.log(this.city_list);
   }
 
   
@@ -194,8 +190,6 @@ export class LanguageSelectPage {
       this.requierd_field_not_valid = true;
     }
     // let data_saved = {'country': this.create.value['country_selected'], 'lang' : language};
-    // console.log(data_saved);
-    // console.log(this.create.value);
     
   }
 
@@ -219,7 +213,6 @@ export class LanguageSelectPage {
       .then((user) => {
         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
         //now we have the users info, let's save it in the NativeStorage
-        console.log('User name :' + user.name + '  email: ' + user.email);
         
         let showAlert = this.alertCtrl.create({
           title: 'فيسبوك',

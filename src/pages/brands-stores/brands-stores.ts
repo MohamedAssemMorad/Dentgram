@@ -43,8 +43,6 @@ export class BrandsStoresPage {
     events.subscribe('application:isLogged', (token) => {
       
       this.storage.get('thumb').then((val) => {
-        console.log("imageeee")
-        console.log(val)
         this.thumb = val;
       });
       

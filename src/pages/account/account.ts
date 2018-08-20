@@ -30,7 +30,6 @@ export class AccountPage {
     public mainFunc: MainFunctionsProvider,
     public platform: Platform) {
     
-      console.log(params.get('select'));
       this.selected_tab = params.get('select');
   }
 

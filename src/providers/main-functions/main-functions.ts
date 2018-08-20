@@ -128,13 +128,11 @@ export class MainFunctionsProvider {
       }
     }  
     this.storage.set('cartNumber', this.cartItemsNumber);
-    console.log(this.cartItemsNumber + '  index = ' + index + '  id = '+ id + '  Operation = ' + op + '  Old = ' + old);
   }
 
   getCartItemCounter(id){
     let index = this.cartItems.indexOf(id);
     let valu = this.cartItemsNumber[index]
-    // console.log('ID = ' + id +' Counter = ' + valu);
     return this.cartItemsNumber[index];
   }
 
@@ -187,7 +185,6 @@ export class MainFunctionsProvider {
     for (var index = 0; index < this.favItems.length; index++) {
       var element = this.favItems[index];
       if (id === element) {
-        // console.log(element);
         return true;
       }
     }
@@ -199,7 +196,6 @@ export class MainFunctionsProvider {
     
     for (var index = 0; index < this.cartItems.length; index++) {
       var element = this.cartItems[index];
-      // console.log(element);
       if (id === element) {
         return true;
       }
@@ -213,7 +209,6 @@ export class MainFunctionsProvider {
     this.cartItemsNumber.splice(index, 1);
     this.storage.set('cart',this.cartItems);
     this.storage.set('cartNumber',this.cartItemsNumber);
-    console.log(index);
   }
   deleteAllCart(){
     this.cartItems = [];
@@ -225,12 +220,10 @@ export class MainFunctionsProvider {
   }
 
   deleteFromFav(id){
-    console.log(id);
     
     let index = this.favItems.indexOf(id);
     this.favItems.splice(index, 1);
     this.storage.set('fav',this.favItems);
-    console.log(index);
   }
 
   isLoggedin(){
@@ -454,7 +447,7 @@ export class MainFunctionsProvider {
 
   openSlider(arr){
     if(arr != null){
-      console.log(arr.target + ' + ' + arr.id);
+      console.log("openSlider", arr.target + ' + ' + arr.id);
       this.events.publish('application:openSlide',arr);
     }
   }

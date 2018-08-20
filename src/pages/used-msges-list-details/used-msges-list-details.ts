@@ -66,7 +66,6 @@ export class UsedMsgesListDetailsPage {
     this.message = this.navParams.get('body');
 
     this.msg_id = this.navParams.get('msg_id');
-    console.log('msg_id ==== '+this.navParams.get('msg_id'));
     this.readMessage(this.msg_id);
   }
 
@@ -81,7 +80,6 @@ export class UsedMsgesListDetailsPage {
       this.http.post(url,'',options).map(
         res => res.json())
         .subscribe(data => { 
-          console.log(data);
           if(data.success == true){
             this.doToast('Message marked as read');
           }

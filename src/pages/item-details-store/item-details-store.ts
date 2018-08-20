@@ -136,7 +136,6 @@ export class ItemDetailsStorePage {
     let url = this.mainFunc.url + '/api/structure/items/view/' + this.id;
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-        console.log('Remote itemData = ' + data);  
         this.attributes = [];
         this.slides_list = [];
         this.spes = [];
@@ -204,7 +203,6 @@ export class ItemDetailsStorePage {
     let url = this.mainFunc.url + '/api/search?query=' + name + '&type=item&limit=5&filters=&result=1';
     let localHomeMenudata2 = this.http.get(url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = [];
       data = dataall.data;
       let name = "";

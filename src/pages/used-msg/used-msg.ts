@@ -81,7 +81,6 @@ export class UsedMsgPage {
       "used_item_id": this.used_item_id
     };
 
-    console.log(data);
     this.storage.get('token').then( token => {
       this.http.post(url+token, data, options)
         .map(res => res.json())

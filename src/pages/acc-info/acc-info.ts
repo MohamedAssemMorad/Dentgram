@@ -121,18 +121,15 @@ export class AccInfoPage {
     let localHomeMenudata = this.http.get('assets/mainmenuaccount.json').map(res => res.json().items);
       localHomeMenudata.subscribe(data => {
       this.homemenu = data;
-      console.log('List = ' + data);
 
     });
 
     if (navigator.onLine){
       // this.authClass.showLoading('Loading Data',true);
       let url = this.mainFunc.url + '/api/auth/register';
-      // console.log(url);
       let localdata_content = this.http.get(url).map(res => res.json().countries);
       // let localdata_content = this.http.get('assets/countries.json').map(res => res.json().countries);
       localdata_content.subscribe(data => {
-        console.log(data);
         this.country_list = data;
         this.allData = data;
 
@@ -282,7 +279,6 @@ export class AccInfoPage {
       case '0':
         // Edit Profile
         this.mainMenu = true;
-        console.log(this.create.value);
         
       break;
 
@@ -342,8 +338,6 @@ change_city(lang) {
 
   this.city_list = this.allData[id].cities;
   
-  // console.log(id);
-  // console.log(this.city_list);
 }
 
 changelanguage(lang) {
@@ -386,7 +380,6 @@ saveLanguageData(){
       language = "";
     }
 
-    console.log(language+' '+this.createLang.value['country_selected_ar']+' '+this.createLang.value['city_selected_ar']);
 
 
     
@@ -410,7 +403,6 @@ saveLanguageData(){
       // this.splashScreen.show();
       // window.location.reload();
 
-      // console.log('changed ar');
 
       // this.navCtrl.setRoot(HomePage);
 
@@ -437,12 +429,9 @@ saveLanguageData(){
 
       this.profileEdit();
     }else{
-      console.log('nothing');
       this.requierd_field_not_valid = true;
     }
-    // let data_saved = {'country': this.create.value['country_selected'], 'lang' : language};
-    // console.log(data_saved);
-    // console.log(this.create.value);    
+    // let data_saved = {'country': this.create.value['country_selected'], 'lang' : language};  
 }
 
 
@@ -527,7 +516,6 @@ profileEdit(){
             .subscribe(data => {
               let containt_message = data.success;
               this.loading.dismiss();
-              console.log('Response Message = ' + containt_message);
               if (containt_message){
                 // clear All Data And Show Message For Submit The Add
                 this.storage.set('token', token);
@@ -597,7 +585,6 @@ changePassword(){
         .map(res => res.json())
         .subscribe(data => {
           let containt_message = data.success;
-          console.log('Response Message = ' + containt_message);
           if (containt_message){
             // clear All Data And Show Message For Submit The Add
             
@@ -662,7 +649,6 @@ changePassword(){
       // if(results[0] != null && results[0] != undefined){
       //   this.pro_photo = results[0];
       // }
-      console.log(results[0]);
     }, (err) => { 
       console.log(err);
     });
@@ -681,7 +667,6 @@ changePassword(){
 
     
 
-    console.log(this.cont_country);
 
     let data = {
       "type":"contact",
@@ -692,7 +677,6 @@ changePassword(){
       "country_id": this.cont_country
     };
 
-    console.log(data);
 
     this.http.post(url, data, options)
           .map(res => res.json())

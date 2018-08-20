@@ -108,7 +108,6 @@ export class AccFavPage {
     let localItemsdata = this.http.get('assets/items.json').map(res => res.json().items);
     localItemsdata.subscribe(data => {
       this.itemsList = data;
-      console.log('List = ' + data);
 
     });
 

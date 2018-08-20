@@ -75,7 +75,6 @@ export class MatchMakingDetailsPage {
     let url = this.mainFunc.url + '/api/structure/careers/view/' + this.id + '?token=' + token;
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-        console.log('Remote Course Details Data = ' + data);  
                 
         if (data.id != null && data.id != ''){
           this.isDataAvilable = true;
@@ -160,7 +159,6 @@ export class MatchMakingDetailsPage {
     
     
     
-          console.log(filePath)
         }).catch(err => 
             console.log(err)
         );
@@ -273,7 +271,6 @@ export class MatchMakingDetailsPage {
 
 
 
-      console.log(filePath)
     }).catch(err => 
         console.log(err)
     );

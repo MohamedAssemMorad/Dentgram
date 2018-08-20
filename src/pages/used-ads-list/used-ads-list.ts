@@ -129,12 +129,10 @@ export class UsedAdsListPage {
             let url = this.mainFunc.url + '/api/structure/used-items/category/' + this.catId + '/' + this.city_id;
             let localHomeMenudata2 = this.http.get(url).map(res => res.json());
             localHomeMenudata2.subscribe(dataall => {
-              console.log('Remote Catalogue = ' + dataall);
               let data = [];
               data = dataall.used_items;
               this.slider_Data = dataall.slides;
               // this.slider_Data_action = dataall.slider_Data.action;
-              // console.log('Slider Data: '+JSON.stringify(this.slider_Data[0].url.thumb));
               let name = "";
               let data2: any[];
               data2 = [];
@@ -206,7 +204,6 @@ export class UsedAdsListPage {
 
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
-    // console.log('Current index is', currentIndex);
     this.ionViewDidEnter(currentIndex);
     console.log('slideInView: '+this.slideInView);
     if(this.slideInView == true){
@@ -218,12 +215,10 @@ export class UsedAdsListPage {
           
           this.http.get(url).map(res => res.json()).subscribe(dataAll => {
             this.slideViewed.push(slider_id);
-            console.log(dataAll);
           });
         }
       }
     }
-    console.log(this.slideViewed);
   }
 
   openSlider(arr,slide_id)
@@ -237,7 +232,6 @@ export class UsedAdsListPage {
           
           this.http.get(url).map(res => res.json()).subscribe(dataAll => {
             this.slideClicked.push(slider_id);
-            console.log(dataAll);
           });
         }
       }
@@ -250,7 +244,6 @@ export class UsedAdsListPage {
     let url = this.mainFunc.url + '/api/structure/used-items/category/' + this.catId + '/' + this.city_id + '?page=' + (this.current_page + 1);
           let localHomeMenudata2 = this.http.get(url).map(res => res.json());
           localHomeMenudata2.subscribe(dataall => {
-            console.log('Remote Catalogue = ' + dataall);
             let data = [];
             data = dataall.used_items;
             let name = "";
@@ -455,7 +448,6 @@ export class UsedAdsListPage {
 
   doInfinite(infiniteScroll) {
     if(this.can_load_more){
-      // console.log('Begin async operation');
       setTimeout(() => {
         this.loadNextPage();
         infiniteScroll.complete();

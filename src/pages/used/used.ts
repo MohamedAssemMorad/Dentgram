@@ -41,7 +41,6 @@ export class UsedPage {
     public storage: Storage,
     public platform: Platform) {
     
-      console.log(params.get('select'));
       this.selected_tab = '0';
 
       this.isLogged();
@@ -50,13 +49,10 @@ export class UsedPage {
   isLogged()
   {
     this.storage.get('token').then(data => {
-      console.log('token = '+data);
       if (data !== null) {
-        console.log('iam true');
         this.ifIsLogged = true;
         return true;
       }else{
-        console.log('iam false');
         this.ifIsLogged = false;
         return false;
       }

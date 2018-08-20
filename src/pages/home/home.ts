@@ -185,7 +185,6 @@ ionViewDidEnter(){
     this.direc = "rtl";
     this.direcR = "ltr";  
   }
-  //console.log('is login ? ' + this.auth.isLogged);
   
 }  
   ionViewDidLoad(){
@@ -219,7 +218,6 @@ ionViewDidEnter(){
     let localItemsdata = this.http.get('assets/beststores.json').map(res => res.json().items);
     localItemsdata.subscribe(data => {
       this.storelist = data;
-      console.log('List = ' + data);
 
     });
 
@@ -227,7 +225,6 @@ ionViewDidEnter(){
     let localHomeMenudata = this.http.get('assets/mainmenuhome.json').map(res => res.json().items);
     localHomeMenudata.subscribe(data => {
       this.homemenu = data;
-      console.log('List = ' + data);
 
     });
 
@@ -321,7 +318,6 @@ ionViewDidEnter(){
   }
 
   addToCart(id,item){
-    console.log('add id = '+ id + ' & item = ' + item);
     this.mainFunc.addToCart(id);
     // this.mainFunc.cartItems.push(id);
     // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');
@@ -470,9 +466,8 @@ ionViewDidEnter(){
         let localHomeMenudata2;
         localHomeMenudata2 = this.http.get(urlx).map(res => res.json());  
         localHomeMenudata2.subscribe(data => {
-          console.log('App Refe = ' + data);
           let dataarr: any = data;
-          console.log('App Refe = ' + dataarr.length);
+          console.log('App Refe = ' + dataarr);
 
           for (let index = 0; index < dataarr.length; index++) {
             const element = dataarr[index];

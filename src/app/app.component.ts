@@ -115,21 +115,17 @@ export class MyApp {
                             events.subscribe('application:isLogged', (token) => {
                               if(token !== false){
                                 this.isLogged = true;
-                                console.log(token);
-                                console.log('is Logged in = true');
+                                console.log(token, 'is Logged in = true');
                               }else{
                                 this.isLogged = false;
-                                console.log(token);
-                                console.log('is Logged in = false');
+                                console.log(token, 'is Logged in = false');
                               }
                               this.storage.get('thumb').then((val) => {
-                                console.log("imageeee")
-                                console.log(val)
+                                console.log("imageeee", val);
                                 this.thumb = val;
                               });
                               this.storage.get('name').then((val) => {
-                                console.log("nameeeee")
-                                console.log(val)
+                                console.log("nameeeee", val);
                                 this.Dfirst_name = val;
                               });
                               this.storage.get('username').then((val) => {
@@ -327,16 +323,12 @@ export class MyApp {
     // let localLangdata = this.http.get('assets/lang/app.json').map(res => res.json().items);
     // localLangdata.subscribe(data => {
     //   this.lang_list = data;
-    //   console.log('List : ' + this.lang_list);
-    //   console.log('Data : ' + data);
       
     //   if (this.platform.dir() === "rtl") {
     //     // this.welcomeText = data.welcome.ar;
-    //     // console.log('welcom = ' + data.welcome.ar);
         
     //   }else {
     //     // this.welcomeText = data['welcome'].en;
-    //     // console.log('welcom = ' + data.welcome.en);
     //   }
     // });
 
@@ -344,7 +336,6 @@ export class MyApp {
     localMenudata.subscribe(data => {
       
       this.menuData = data;
-      console.log(this.menuData);
       
     });
 
@@ -399,12 +390,10 @@ export class MyApp {
     this.events.subscribe('application:isLogged', (token) => {
       if(token !== false){
         this.isLogged = true;
-        console.log(token);
-        console.log('is Logged in = true');
+        console.log(token, 'is Logged in = true');
       }else{
         this.isLogged = false;
-        console.log(token);
-        console.log('is Logged in = false');
+        console.log(token, 'is Logged in = false');
       }
       this.storage.get('thumb').then((val) => {
         this.thumb = val;
@@ -614,9 +603,8 @@ export class MyApp {
         let localHomeMenudata2;
         localHomeMenudata2 = this.http.get(urlx).map(res => res.json());  
         localHomeMenudata2.subscribe(data => {
-          console.log('App Refe = ' + data);
           let dataarr: any = data;
-          console.log('App Refe = ' + dataarr.length);
+          console.log('App Refe = ' + dataarr);
 
           for (let index = 0; index < dataarr.length; index++) {
             const element = dataarr[index];
@@ -687,7 +675,6 @@ export class MyApp {
   checkActive(page){
     // let pages: any;
     //pages = this.getPageClassName(page);
-    // console.log('Status = ' + page == this.activePage);
    return page == this.activePage;
   }
 

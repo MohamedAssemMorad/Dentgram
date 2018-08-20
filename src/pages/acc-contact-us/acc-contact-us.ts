@@ -99,7 +99,6 @@ export class AccContactUsPage {
 
     
 
-    console.log(this.country);
 
     let data = {
       "type":"contact",
@@ -110,7 +109,6 @@ export class AccContactUsPage {
       "country_id": this.country
     };
 
-    console.log(data);
 
     this.http.post(url, data, options)
           .map(res => res.json())

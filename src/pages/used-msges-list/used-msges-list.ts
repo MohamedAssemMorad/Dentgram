@@ -54,7 +54,6 @@ export class UsedMsgesListPage {
               localHomeMenudata2.subscribe(dataall => {
                 let data = [];
                 data = dataall.data;
-                console.log(data);
                 if(data.length == 0 && this.current_page == 0){
                   this.isDataAvilable = false;
                   this.can_load_more = true;
@@ -101,8 +100,6 @@ export class UsedMsgesListPage {
 
   doInfinite(infiniteScroll: any) {
     if(this.can_load_more){
-      // console.log('Begin async operation');
-      console.log('loading more data...');
       setTimeout(() => {
         this.loadPage();
         infiniteScroll.complete();
@@ -133,7 +130,6 @@ export class UsedMsgesListPage {
       this.http.post(url,'',options).map(
         res => res.json())
         .subscribe(data => { 
-          console.log(data);
           if(data.success == true){
             this.messageslist.splice(index, 1);
             if(this.can_load_more && this.messageslist.length == 0){

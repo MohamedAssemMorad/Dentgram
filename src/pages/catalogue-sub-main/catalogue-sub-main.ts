@@ -133,7 +133,6 @@ export class CatalogueSubMainPage {
                 this.events.publish('application:language','');
                 this.viewCtrl.setBackButtonText('');
 
-                console.log(this.secretid);
   }
 
   ionViewDidEnter(){
@@ -164,7 +163,6 @@ export class CatalogueSubMainPage {
       let url = this.mainFunc.url + '/api/structure/categories/'+ this.secretid +'/' + this.catId;
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-        console.log('Remote Catalogue = ' + data);
         let data2: any[];
         data2 = [];
         if(data.slides){
@@ -202,7 +200,6 @@ export class CatalogueSubMainPage {
         this.homemenu = data2;
         // data2 = data;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       });
 
 
@@ -226,7 +223,6 @@ export class CatalogueSubMainPage {
       // // Load Main Home Page Menu Data
       // let localHomeMenudata = this.http.get('assets/cataloguesublist.json').map(res => res.json());
       // localHomeMenudata.subscribe(data => {
-      //   console.log('Catalogue = ' + data);
       //   this.homemenu = data.categories;
       //   // let slider_data = data.slider;
       //   // this.slider_Data_Store = slider_data;
@@ -237,7 +233,6 @@ export class CatalogueSubMainPage {
       let localItemsdata = this.http.get('assets/beststores.json').map(res => res.json().items);
       localItemsdata.subscribe(data => {
         this.storelist = data;
-        console.log('List = ' + data);
   
       });
   
@@ -255,7 +250,6 @@ export class CatalogueSubMainPage {
     }
   
     click_Open_catalogue_sub_id(id,name_ar,name_en,useable){
-      console.log('open' + id + '  ' + name_ar + '  ' + name_en + '  ' + useable)
       if (useable === false){
         let name = '';
         if (this.platform.dir() === "rtl") {
@@ -303,7 +297,6 @@ export class CatalogueSubMainPage {
     }
 
     addToCart(id,item){
-      console.log('add id = '+ id + ' & item = ' + item);
       this.mainFunc.addToCart(id);
       // this.mainFunc.cartItems.push(id);
       // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');

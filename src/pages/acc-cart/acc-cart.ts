@@ -82,7 +82,6 @@ export class AccCartPage {
         //   // let valObjindex = this.mainFunc.cartItems.indexOf(valObj);
         //   let valu = this.mainFunc.cartItemsNumber[index];
         //   this.CartitemsObject[valObj] = valu;
-        //   console.log('add object [' + valObj + ']');
         // }
         
 
@@ -106,7 +105,7 @@ export class AccCartPage {
       this.loadAddressData();
       // this.reloadAddresses = false;
     // }
-    console.log( 'view will enter' );
+    console.log( 'view will enter AccCart' );
   }
   addNewAddress() {
     // let myData = {
@@ -177,13 +176,10 @@ export class AccCartPage {
         let Url_request = this.mainFunc.url + "/api/user/address/all?token=" + this.token;
         let localdata_content = this.http.get(Url_request).map(res => res.json());
           localdata_content.subscribe(data => {
-            // console.log(data);
             this.address_list = data;
-            // console.log('Addresses = ' + data);
           });
       });
     
-      console.log('Addresses Loaded ******************* ---- *******************');
     }
 
   }
@@ -244,13 +240,11 @@ export class AccCartPage {
     // let localItemsdata = this.http.get('assets/items.json').map(res => res.json().items);
     // localItemsdata.subscribe(data => {
     //   // this.itemsList = data;
-    //   // console.log('List = ' + data);
     //   this.toTal = 0;
     //   for (var index = 0; index < data.length; index++) {
     //     var element = data[index].id;
     //     if (this.mainFunc.checkItemInCart(element)) {
     //       let x =+ data[index].price;
-    //       console.log('price is = ' + x);     
     //       this.toTal = this.toTal + x;
     //     }
     //   }
@@ -281,7 +275,6 @@ export class AccCartPage {
       "payment_method" : "COD",
       "confirm" : 0
     }
-    // console.log('Card Sent Data : ' + body_application);
 
     this.storage.get('token').then(token_id => {
       this.token = token_id;
@@ -426,7 +419,6 @@ export class AccCartPage {
       "payment_method" : "COD",
       "confirm" : 0
     }
-    // console.log('Card Sent Data : ' + body_application);
 
     this.storage.get('token').then(token_id => {
       this.token = token_id;
@@ -515,7 +507,6 @@ export class AccCartPage {
       "payment_method" : "COD",
       "confirm" : 1
     }
-    // console.log('Card Sent Data : ' + body_application);
 
     this.storage.get('token').then(token_id => {
       this.token = token_id;
@@ -648,7 +639,6 @@ export class AccCartPage {
     // val = Number.parseInt(val);
 
 
-    // console.log('The Data (Before) For ID -- ' + id + ' --: ' + ' min : ' + min + ' max : ' + max + ' val : ' + val);
     
     if (min == 'null' || min == null || min == 0 || min == '0'){
       min = 1;
@@ -667,49 +657,26 @@ export class AccCartPage {
     }
     val =  Math.floor(val);
 
-    // console.log('The Data (After) For ID -- ' + id + ' --: ' + ' min : ' + min + ' max : ' + max + ' val : ' + val);
     this.mainFunc.cartItemsNumber[this.mainFunc.getCartItemid(id)] = val;
     // this.storage.set('cartNumber', this.mainFunc.cartItemsNumber);
   }
 
 minOrderControl(val){
   let min = Number(val);
-  // console.log('min val before : ' + val);
   if (min == null || min == 0){
     min = 1;
   }
-  // console.log('min val after : ' + min);
   return min;
 }
  
 maxOrderControl(val){
   val = Number(val);
-  // console.log('max val before : ' + val);
   if (val === null || val === 'null'){
     val = 100;
   }
-  // console.log('max val after : ' + val);
   return val;
 }
 
 
-  // ionViewDidEnter () {
-  //   console.log( 'view did enter' );
-  // }
 
-  // ionViewWillLeave () {
-  //   console.log( 'view will leave' );
-  // }
-
-  // ionViewDidLeave () {
-  //   console.log( 'view did leave' );
-  // }
-
-  // ionViewWillUnload () {
-  //   console.log( 'view will unload' );
-  // }
-
-  // ionViewCanEnter () {
-  //   console.log( 'view can enter' );
-  // }
 }

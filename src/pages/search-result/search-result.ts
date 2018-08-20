@@ -227,7 +227,6 @@ export class SearchResultPage {
     
     let localHomeMenudata2 = this.http.get(this.url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = dataall.data;
       let name = "";
       let data2: any[];
@@ -267,7 +266,6 @@ export class SearchResultPage {
 
     let localHomeMenudata2 = this.http.get(this.url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = dataall.data;
       let name = "";
       let data2: any[];
@@ -312,7 +310,6 @@ export class SearchResultPage {
   loadData_Item() {
     let localHomeMenudata2 = this.http.get(this.url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = [];
       data = dataall.data;
       let name = "";
@@ -360,7 +357,6 @@ export class SearchResultPage {
 
     let localHomeMenudata2 = this.http.get(this.url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = [];
       data = dataall.data;
       let name = "";
@@ -414,7 +410,6 @@ export class SearchResultPage {
       let localHomeMenudata2;
       localHomeMenudata2 = this.http.get(this.url).map(res => res.json().data);
       localHomeMenudata2.subscribe(dataall => {
-        // console.log('Remote Catalogue = ' + dataall);
         let data2: any[];
         let data = dataall;
         data2 = [];
@@ -453,7 +448,6 @@ export class SearchResultPage {
         }
         this.homemenu = data2;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -470,7 +464,6 @@ export class SearchResultPage {
     let localHomeMenudata2;
       localHomeMenudata2 = this.http.get(this.url).map(res => res.json().data);
       localHomeMenudata2.subscribe(dataall => {
-        // console.log('Remote Catalogue = ' + dataall);
         let data2: any[];
         let data = dataall;
         data2 = [];
@@ -509,7 +502,6 @@ export class SearchResultPage {
         }
         // this.homemenu = data2;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -549,7 +541,6 @@ export class SearchResultPage {
       
     localHomeMenudata2 = this.http.get(this.url).map(res => res.json().data);
     localHomeMenudata2.subscribe(dataall => {
-      // console.log('Remote Catalogue = ' + data);
       let data2: any[];
       data2 = [];
       let data = dataall;
@@ -594,7 +585,6 @@ export class SearchResultPage {
       
       // data2 = data;
 
-      console.log('Remote Catalogue 2 = ' + this.homemenu);
     },
     err => {
 
@@ -619,7 +609,6 @@ export class SearchResultPage {
       
     localHomeMenudata2 = this.http.get(this.url).map(res => res.json().data);
     localHomeMenudata2.subscribe(dataall => {
-      // console.log('Remote Catalogue = ' + data);
       let data2: any[];
       data2 = [];
       let data = dataall;
@@ -664,7 +653,6 @@ export class SearchResultPage {
       
       // data2 = data;
 
-      console.log('Remote Catalogue 2 = ' + this.homemenu);
     },
     err => {
 
@@ -691,7 +679,6 @@ export class SearchResultPage {
     let localHomeMenudata2;
     localHomeMenudata2 = this.http.get(this.url).map(res => res.json().data);
     localHomeMenudata2.subscribe(dataall => {
-      // console.log('Remote Catalogue = ' + data);
       let data2: any[];
       data2 = [];
       let data = dataall
@@ -730,7 +717,6 @@ export class SearchResultPage {
       }
       this.homemenu = data2;
 
-      console.log('Remote Catalogue 2 = ' + this.homemenu);
     },
     err => {
 
@@ -747,7 +733,6 @@ export class SearchResultPage {
     let localHomeMenudata2;
     localHomeMenudata2 = this.http.get(this.url).map(res => res.json().data);
     localHomeMenudata2.subscribe(dataall => {
-      // console.log('Remote Catalogue = ' + data);
       let data2: any[];
       data2 = [];
       let data = dataall
@@ -786,7 +771,6 @@ export class SearchResultPage {
       }
       this.homemenu = data2;
 
-      console.log('Remote Catalogue 2 = ' + this.homemenu);
     },
     err => {
 
@@ -821,7 +805,6 @@ export class SearchResultPage {
 
     let localHomeMenudata2 = this.http.get(this.url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = dataall.data;
       let name = "";
       let data2: any[];
@@ -867,7 +850,6 @@ export class SearchResultPage {
 
     let localHomeMenudata2 = this.http.get(this.url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = dataall.data;
       let name = "";
       let data2: any[];
@@ -999,7 +981,6 @@ export class SearchResultPage {
 
   doInfinite(infiniteScroll) {
     if(this.can_load_more){
-      // console.log('Begin async operation');
       setTimeout(() => {
         // this.loadNextPage();
 

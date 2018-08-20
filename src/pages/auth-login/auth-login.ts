@@ -137,11 +137,9 @@ export class AuthLoginPage {
         content: 'Signing in...'
     });
     loading.present();
-    console.log(this.login.value);
 
     this.auth.login(this.login.value).subscribe(data => {
       loading.dismiss();
-      console.log(data);
       
       if(data.message === "Successfully signed in user!"){
         this.storage.set('token', data.token);
@@ -230,7 +228,6 @@ export class AuthLoginPage {
             lang : langu
           };
           
-        //  console.log(create);
          this.http.post(Url_request, JSON.stringify(create), {headers: header})
         .map(res => res.json())
         .subscribe(data => {
@@ -280,7 +277,6 @@ export class AuthLoginPage {
   //  .then((user) => {
   //    user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
   //    //now we have the users info, let's save it in the NativeStorage
-  //    console.log(user);
      
 
     //  if (user.gender === 'male'){
@@ -324,7 +320,6 @@ export class AuthLoginPage {
      //Lock if this user alrady registerd
 
     //  this.auth.login(login_data).subscribe(data => {
-    //    console.log(data);
     //    if(data.message === "Successfully signed in user!"){
          
     //      this.storage.set('token', data.token);
@@ -367,7 +362,6 @@ export class AuthLoginPage {
 
     //      let Url_request = this.mainFunc.url + "/api/auth/register";
     //      let header = this.mainFunc.header;
-    //      console.log(create);
     //      this.http.post(Url_request, JSON.stringify(create), {headers: header})
     //    .map(res => res.json())
     //    .subscribe(data => {
@@ -421,7 +415,6 @@ export class AuthLoginPage {
 
 
     //      this.auth.login(login_data).subscribe(data => {
-    //        console.log(data);
     //        if(data.message === "Successfully signed in user!"){
              
     //          this.storage.set('token', data.token);
@@ -551,7 +544,6 @@ export class AuthLoginPage {
       .then((user) => {
         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
         //now we have the users info, let's save it in the NativeStorage
-        console.log(user);
         
 
         
@@ -612,7 +604,6 @@ export class AuthLoginPage {
         //Lock if this user alrady registerd
 
         this.auth.login(login_data).subscribe(data => {
-          console.log(data);
           if(data.message === "Successfully signed in user!"){
             
             this.storage.set('token', data.token);
@@ -660,7 +651,6 @@ export class AuthLoginPage {
 
             let Url_request = this.mainFunc.url + "/api/auth/register";
             let header = this.mainFunc.header;
-            console.log(create);
             this.http.post(Url_request, JSON.stringify(create), {headers: header})
           .map(res => res.json())
           .subscribe(data => {
@@ -714,7 +704,6 @@ export class AuthLoginPage {
 
 
             this.auth.login(login_data).subscribe(data => {
-              console.log(data);
               if(data.message === "Successfully signed in user!"){
                 
                 this.storage.set('token', data.token);

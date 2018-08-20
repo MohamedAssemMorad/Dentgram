@@ -86,7 +86,6 @@ export class ItemDetailsPage {
     let url = this.mainFunc.url + '/api/structure/products/view/' + this.id;
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-        console.log('Remote itemData = ' + data);  
         this.attributes = [];
         this.slides_list = [];
         this.spes = [];
@@ -147,7 +146,7 @@ export class ItemDetailsPage {
     let url = this.mainFunc.url + '/api/search?query=' + name + '&type=product&limit=5&filters=&result=1';
     let localHomeMenudata2 = this.http.get(url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
+
       let data = dataall.data;
       let name = "";
       let data2: any[];
@@ -182,7 +181,6 @@ export class ItemDetailsPage {
 
 
   addToCart(id,item){
-    console.log('Add item id = ' + id);
     
     this.mainFunc.cartItems.push(id);
     this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');

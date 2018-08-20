@@ -65,7 +65,6 @@ export class AccAddressPage {
           let url = this.mainFunc.url + '/api/user/address?token=' + token;
           let localdata_content = this.http.get(url).map(res => res.json());
           localdata_content.subscribe(data => {
-            console.log(data);
             this.city_list = data.cities;
             // this.allData = data;
           });
@@ -106,9 +105,7 @@ export class AccAddressPage {
         let Url_request = this.mainFunc.url + "/api/user/address/all?token=" + this.token;
         let localdata_content = this.http.get(Url_request).map(res => res.json());
           localdata_content.subscribe(data => {
-            console.log(data);
             this.address_list = data;
-            console.log('Addresses = ' + data);
           });
       });
     }
@@ -197,7 +194,6 @@ export class AccAddressPage {
             .map(res => res.json())
             .subscribe(data => {
               let containt_message = data.message;
-              console.log('Response Message = ' + containt_message);
               if (containt_message === 'Successfully created address!'){
 
               }

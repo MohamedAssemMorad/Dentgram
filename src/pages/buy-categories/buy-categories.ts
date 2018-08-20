@@ -155,7 +155,6 @@ export class BuyCategoriesPage {
       // Load Main Home Page Menu Data
       let localHomeMenudata = this.http.get('assets/cataloguelist.json').map(res => res.json());
       localHomeMenudata.subscribe(data => {
-        console.log('Catalogue = ' + data);
         this.homemenu = data.categories;
         // let slider_data = data.slider;
         // this.slider_Data_Store = slider_data;
@@ -166,7 +165,6 @@ export class BuyCategoriesPage {
       let localItemsdata = this.http.get('assets/beststores.json').map(res => res.json().items);
       localItemsdata.subscribe(data => {
         this.storelist = data;
-        console.log('List = ' + data);
   
       });
   
@@ -203,7 +201,6 @@ export class BuyCategoriesPage {
     }
 
     addToCart(id,item){
-      console.log('add id = '+ id + ' & item = ' + item);
       this.mainFunc.addToCart(id);
       // this.mainFunc.cartItems.push(id);
       // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');

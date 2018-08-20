@@ -123,7 +123,6 @@ export class MatchMakingListPage {
 
                 this.catName = this.navParams.get('name');
                 this.catId = this.navParams.get('id');
-                  console.log(this.catId);
                   
                 this.secretid = 'career';//this.navParams.get('secretid');
                 this.pagetitle = this.navParams.get('pagetitle');
@@ -189,7 +188,6 @@ export class MatchMakingListPage {
       
       localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(dataall => {
-        // console.log('Remote Catalogue = ' + data);
         let data = dataall.careers;
 
         let data2: any[];
@@ -240,7 +238,6 @@ export class MatchMakingListPage {
         
         // data2 = data;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -310,7 +307,6 @@ export class MatchMakingListPage {
           this.isDataAvilableAct = false;
         }
         
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -352,7 +348,6 @@ export class MatchMakingListPage {
     }
 
     addToCart(id,item){
-      console.log('add id = '+ id + ' & item = ' + item);
       this.mainFunc.addToCart(id);
       // this.mainFunc.cartItems.push(id);
       // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');
@@ -417,7 +412,6 @@ export class MatchMakingListPage {
 
     doInfinite(infiniteScroll) {
       if(this.can_load_more){
-        // console.log('Begin async operation');
         setTimeout(() => {
           this.loadNextPage();
           infiniteScroll.complete();

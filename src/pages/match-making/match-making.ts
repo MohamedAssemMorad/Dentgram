@@ -200,7 +200,6 @@ export class MatchMakingPage {
       let url = this.mainFunc.url + '/api/structure/categories/for_job/0'
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-        console.log('Remote Catalogue = ' + data);
         let data2: any[];
         data2 = [];
         if(data.slides){
@@ -239,7 +238,6 @@ export class MatchMakingPage {
         this.homemenu = data2;
         // data2 = data;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -282,7 +280,6 @@ export class MatchMakingPage {
     }
 
     addToCart(id,item){
-      console.log('add id = '+ id + ' & item = ' + item);
       this.mainFunc.addToCart(id);
       // this.mainFunc.cartItems.push(id);
       // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');

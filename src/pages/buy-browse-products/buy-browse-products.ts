@@ -94,7 +94,6 @@ export class BuyBrowseProductsPage {
           this.catId = this.navParams.get('id');
           this.city_id = this.navParams.get('city_id');
 
-          console.log('name = ' + this.catName + ' id = ' + this.catId);
           
 
           
@@ -117,7 +116,6 @@ export class BuyBrowseProductsPage {
           let url = this.mainFunc.url + '/api/structure/items/category/' + this.catId + '/' + this.city_id;
           let localHomeMenudata2 = this.http.get(url).map(res => res.json());
           localHomeMenudata2.subscribe(dataall => {
-            console.log('Remote Catalogue = ' + dataall);
             let data = [];
             data = dataall.items;
             let name = "";
@@ -168,7 +166,6 @@ export class BuyBrowseProductsPage {
             this.bestrecommended = data2;
             // data2 = data;
 
-            // console.log('Remote Catalogue 2 = ' + this.homemenu);
           });
 
 
@@ -183,7 +180,6 @@ export class BuyBrowseProductsPage {
     let url = this.mainFunc.url + '/api/structure/items/category/' + this.catId + '/' + this.city_id + '?page=' + (this.current_page + 1);
     let localHomeMenudata2 = this.http.get(url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = [];
       data = dataall.items;
       let name = "";
@@ -356,7 +352,6 @@ export class BuyBrowseProductsPage {
 
   doInfinite(infiniteScroll) {
     if(this.can_load_more){
-      // console.log('Begin async operation');
       setTimeout(() => {
         this.loadNextPage();
         infiniteScroll.complete();

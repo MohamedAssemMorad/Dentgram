@@ -88,7 +88,6 @@ export class CategorysPage {
                   this.catName = cname;
                   this.catId = cid;
 
-                  console.log('name = ' + this.catName + ' id = ' + this.catId);
 
                   let localBestRecommendeddata = this.http.get('assets/bestrecommended.json').map(res => res.json().items);
                   localBestRecommendeddata.subscribe(data => {
@@ -104,7 +103,6 @@ export class CategorysPage {
                   let url = this.mainFunc.url + '/api/structure/products/category/' + this.catId;
                   let localHomeMenudata2 = this.http.get(url).map(res => res.json());
                   localHomeMenudata2.subscribe(dataall => {
-                    console.log('Remote Catalogue = ' + dataall);
                     let data = dataall.products;
                     let name = "";
                     let data2: any[];
@@ -150,7 +148,6 @@ export class CategorysPage {
                     this.bestrecommended = data2;
                     // data2 = data;
 
-                    // console.log('Remote Catalogue 2 = ' + this.homemenu);
                   });
 
 
@@ -163,7 +160,6 @@ export class CategorysPage {
     let url = this.mainFunc.url + '/api/structure/products/category/' + this.catId + '?page=' + (this.current_page + 1);
     let localHomeMenudata2 = this.http.get(url).map(res => res.json());
     localHomeMenudata2.subscribe(dataall => {
-      console.log('Remote Catalogue = ' + dataall);
       let data = dataall.products;
       let name = "";
       let data2: any[];
@@ -322,7 +318,6 @@ export class CategorysPage {
   
   doInfinite(infiniteScroll) {
     if(this.can_load_more){
-      // console.log('Begin async operation');
       setTimeout(() => {
         this.loadNextPage();
         infiniteScroll.complete();

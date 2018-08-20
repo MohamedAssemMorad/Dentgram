@@ -141,7 +141,6 @@ export class UsedMyadsPage {
       let url = this.mainFunc.url + '/api/ads?token=' + token;
         let localHomeMenudata2 = this.http.get(url).map(res => res.json());
         localHomeMenudata2.subscribe(dataall => {
-          console.log('Remote Catalogue = ' + dataall);
           let data = [];
           data = dataall.data;
           let name = "";
@@ -197,7 +196,6 @@ export class UsedMyadsPage {
         let url = this.mainFunc.url + '/api/ads?token=' + token + '?page=' + (this.current_page + 1);;
           let localHomeMenudata2 = this.http.get(url).map(res => res.json());
           localHomeMenudata2.subscribe(dataall => {
-            console.log('Remote Catalogue = ' + dataall);
             let data = [];
             data = dataall.data;
             let name = "";
@@ -407,7 +405,6 @@ export class UsedMyadsPage {
 
   doInfinite(infiniteScroll) {
     if(this.can_load_more){
-      // console.log('Begin async operation');
       setTimeout(() => {
         this.loadNextPage();
         infiniteScroll.complete();

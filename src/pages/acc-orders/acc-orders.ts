@@ -70,12 +70,9 @@ export class AccOrdersPage {
         this.http.post(Url_request, JSON.stringify(body_application), {headers: header})
           .map(res => res.json())
           .subscribe(data => {
-            // console.log(data);
             this.allDataTable = data.data;
-            console.log('Orders Data = ' + data.data);
           });
       });
-      console.log('Orders Data Loaded ******************* ---- *******************');
       this.mainFunc.dismissLoading();
     }
   }

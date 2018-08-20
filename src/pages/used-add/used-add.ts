@@ -138,7 +138,6 @@ export class UsedAddPage {
     localHomeMenudata2.subscribe(data => {
 
 
-      console.log('Remote Catalogue = ' + data);
       let data2: any[];
       data2 = [];
       if(data.length > 0){
@@ -172,7 +171,6 @@ export class UsedAddPage {
       this.homemenu = data2;
       // data2 = data;
 
-      console.log('Remote Catalogue 2 = ' + this.homemenu);
     });
   
 
@@ -184,7 +182,6 @@ export class UsedAddPage {
     let url = this.mainFunc.url + '/api/structure/categories/for_used/' + id;
     let localHomeMenudata2 = this.http.get(url).map(res => res.json());
     localHomeMenudata2.subscribe((data) => {
-      console.log('Remote Catalogue = ' + data);
       let data2: any[];
       data2 = [];
       if (data.length > 0){
@@ -230,7 +227,6 @@ export class UsedAddPage {
       this.homemenu = data2;
       // data2 = data;
 
-      console.log('Remote Catalogue 2 = ' + this.homemenu);
     },(error) => {
       this.isDataAvilable = false;
 
@@ -273,7 +269,6 @@ export class UsedAddPage {
     
     this.imagePicker.getPictures(options).then((results) => {
       for (var i = 0; i < results.length; i++) {
-          // console.log('Image URI: ' + results[i]);
           // alert('Image URI: ' + results[i])
           this.images_list.push(results[i]);
           if(i != 0){
@@ -396,10 +391,7 @@ export class UsedAddPage {
 
           this.promisesArray.push(msg);
           console.log('msg : ' + msg);
-          // console.log('Uploading Image : ' + file + ' Done !');
-          // console.log('Data : ' + data);
-          // console.log('File Url JSON : ' + JSON.stringify(data));
-          
+
           // alert("data : " + JSON.stringify(data));
         }, (err) => {
           // error
@@ -442,7 +434,6 @@ export class UsedAddPage {
     let target = this.images_list.length + 1;
     let loading_status = 0;
 
-    console.log('this.images_list.length = ' + this.images_list.length);
     console.log('this.images_list = ' + this.images_list);
     
     if(this.images_list.length > 1){
@@ -502,7 +493,6 @@ export class UsedAddPage {
             //   // Create the Ads
             // }
 
-            console.log(ad_form);
 
           }else{
             this.showAlertMsg('Please Check The Data');
@@ -572,7 +562,6 @@ export class UsedAddPage {
         // alert("error : " + JSON.stringify(err));
       });
 
-      console.log(filename);
       
   }
 

@@ -121,7 +121,6 @@ export class CatalogueMainPage {
                   
                 });
 
-                console.log(this.secretid);
                 
   }
 
@@ -178,7 +177,6 @@ export class CatalogueMainPage {
       localHomeMenudata2.subscribe(data => {
 
 
-        console.log('Remote Catalogue = ' + JSON.stringify(data));
         let data2: any[];
         data2 = [];
         if(data.slides){
@@ -216,13 +214,11 @@ export class CatalogueMainPage {
         this.homemenu = data2;
         // data2 = data;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       });
 
       let localHomeMenudata = this.http.get('assets/cataloguelist.json').map(res => res.json());
       localHomeMenudata.subscribe(data => {
         console.log('Catalogue = ' + data);
-        console.log('Catalogue = ' + data.slider);
         // this.homemenu = data.categories;
         // let slider_data = data.slider;
         this.slider_Data_Store = data.slider;
@@ -233,7 +229,6 @@ export class CatalogueMainPage {
       let localItemsdata = this.http.get('assets/beststores.json').map(res => res.json().items);
       localItemsdata.subscribe(data => {
         this.storelist = data;
-        console.log('List = ' + data);
   
       });
   
@@ -273,7 +268,6 @@ export class CatalogueMainPage {
     }
 
     addToCart(id,item){
-      console.log('add id = '+ id + ' & item = ' + item);
       this.mainFunc.addToCart(id);
       // this.mainFunc.cartItems.push(id);
       // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');

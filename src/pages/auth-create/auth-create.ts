@@ -52,8 +52,6 @@ export class AuthCreatePage {
         events.subscribe('application:isLogged', (token) => {
           
           this.storage.get('thumb').then((val) => {
-            console.log("imageeee")
-            console.log(val)
             this.thumb = val;
           });
         });
@@ -76,7 +74,6 @@ export class AuthCreatePage {
           let url = this.mainFunc.url + '/api/auth/register';
           let localdata_content = this.http.get(url).map(res => res.json().countries);
           localdata_content.subscribe(data => {
-            console.log(data);
             this.country_list = data;
             this.allData = data;
           });
@@ -103,7 +100,6 @@ export class AuthCreatePage {
             let containt_message = data.message;
             let containt_token = data.token;
 
-            console.log(data);
             
             // if (data.errors.first_name){
             //   this.first_name_error = "errorshow";
@@ -192,14 +188,13 @@ export class AuthCreatePage {
           },(error) => {
             loading.dismiss();
             if (error.status === 422){
-              console.log('App Error : 422');
-              console.log('"422 error handle" : ' + error.status );
+              console.log('"422 error handle" : ' + error );
               let errText = JSON.parse(error._body);
               let inputErrors = errText.errors;
               
               let errorsHTML = '';
 
-              console.log(inputErrors);
+              console.log("inputErrors", inputErrors);
               for(let key in inputErrors){
                 errorsHTML = errorsHTML + '<li><b>' + key + ':</b> ' + inputErrors[key] + '</li>';
               }
@@ -245,7 +240,6 @@ export class AuthCreatePage {
 
             }
           });
-      console.log(this.create.value)
     }
   }
 

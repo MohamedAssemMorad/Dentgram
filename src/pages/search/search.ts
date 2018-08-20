@@ -129,7 +129,6 @@ export class SearchPage {
       this.type = 'used_item';
     }
 
-    // console.log('Hist List Items = ' + this.histSearchWords);
     this.callHistorysearches();
   }
 
@@ -233,7 +232,6 @@ export class SearchPage {
   }
 
   onFilterByChange(selectedValue: any) {
-    console.log("filterBy", this.filterBy, selectedValue);
     if(selectedValue === 'LOCATION_FILTER')
       this.getCities();
 
@@ -248,7 +246,6 @@ export class SearchPage {
     this.items = [];
 
     this.storage.get('city_id').then(city_id => {
-      console.log(this.searchTerm, this.type, city_id, this.filterBy);
       let datarecived;
 
       if(this.filterBy){
@@ -260,8 +257,6 @@ export class SearchPage {
       datarecived.subscribe(data => {
         this.items = data;
         this.searching = false;
-        console.log("items", this.items);
-        console.log('Search : ' + this.items);
       });
     });
   }
@@ -274,7 +269,6 @@ export class SearchPage {
   }
 
   openSearchResultPage() {
-    console.log("type", this.type, "searchTerm", this.searchTerm);
     this.navCtrl.push(SearchResultPage, {
       'type': this.type,
       'query': this.searchTerm,

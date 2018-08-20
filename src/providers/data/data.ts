@@ -24,7 +24,7 @@ export class DataProvider {
   filterItems(searchTerm, Type, city_id) {
     this.items = [];
     let Url_request = this.mainFunc.url + "/api/search?query=" + searchTerm + '&type=' + Type + '&limit=10&city_id=' + city_id;
-    console.log(Url_request);
+    console.log("Url_request", Url_request);
     return this.http.get(Url_request).map(res => res.json());
   }
 
@@ -45,7 +45,7 @@ export class DataProvider {
         Url_request += "&filterBy=courseProvider";
         break;
     }
-    console.log(Url_request);
+    console.log("Url_request", Url_request);
     return this.http.get(Url_request).map(res => res.json());
   }
 }

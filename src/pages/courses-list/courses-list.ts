@@ -183,14 +183,12 @@ export class CoursesListPage {
           console.log('Slider is in View');
           this.slideInView = true;
         }
-        // console.log('Srcoll Top: '+scrollTop+' Slider Hight: '+sliderHeight);
 
       });
     }
   }
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
-    // console.log('Current index is', currentIndex);
     this.ionViewDidEnter(currentIndex);
     console.log('slideInView: '+this.slideInView);
     if(this.slideInView == true){
@@ -202,12 +200,10 @@ export class CoursesListPage {
           
           this.http.get(url).map(res => res.json()).subscribe(dataAll => {
             this.slideViewed.push(slider_id);
-            console.log(dataAll);
           });
         }
       }
     }
-    console.log(this.slideViewed);
   }
   
 
@@ -222,7 +218,6 @@ export class CoursesListPage {
           
           this.http.get(url).map(res => res.json()).subscribe(dataAll => {
             this.slideClicked.push(slider_id);
-            console.log(dataAll);
           });
         }
       }
@@ -264,7 +259,6 @@ export class CoursesListPage {
                               // Load Main Home Page Menu Data
                               // let localHomeMenudata = this.http.get('assets/courseslist.json').map(res => res.json());
                               // localHomeMenudata.subscribe(data => {
-                              //   console.log('Courses = ' + data);
                               //   this.homemenu = data.categories;
                               //   // let slider_data = data.slider;
                               //   // this.slider_Data_Store = slider_data;
@@ -281,7 +275,6 @@ export class CoursesListPage {
       // let localItemsdata = this.http.get('assets/beststores.json').map(res => res.json().items);
       // localItemsdata.subscribe(data => {
       //   this.storelist = data;
-      //   console.log('List = ' + data);
   
       // });
   
@@ -330,7 +323,7 @@ export class CoursesListPage {
       }
       
       let url = this.mainFunc.url + '/api/structure/'+ this.secretid +'s/category/' + this.catId + '/' + numn
-      console.log(url);
+      console.log("url", url);
       let localHomeMenudata2;
       
       if (this.secretid === 'course'){
@@ -342,7 +335,6 @@ export class CoursesListPage {
       }     
 
       localHomeMenudata2.subscribe(dataall => {
-        // console.log('Remote Catalogue = ' + data);
         let data;
 
         if(dataall.slides){
@@ -397,7 +389,6 @@ export class CoursesListPage {
         this.homemenu = data2;
         // data2 = data;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -509,7 +500,6 @@ export class CoursesListPage {
       // }     
 
       localHomeMenudata2.subscribe(dataall => {
-        // console.log('Remote Catalogue = ' + data);
 
         let data = dataall.libraries;
 
@@ -571,7 +561,6 @@ export class CoursesListPage {
         this.homemenu = data2;
         // data2 = data;
 
-        console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -656,7 +645,6 @@ export class CoursesListPage {
         }
         // this.homemenu = data2;
 
-        // console.log('Remote Catalogue 2 = ' + this.homemenu);
       },
       err => {
 
@@ -758,7 +746,6 @@ export class CoursesListPage {
 
     doInfinite(infiniteScroll) {
       if(this.can_load_more){
-        // console.log('Begin async operation');
         setTimeout(() => {
           if (this.secretid === 'library'){
             this.loadNextPageLib();
@@ -792,7 +779,6 @@ export class CoursesListPage {
     }
 
     addToCart(id,item){
-      console.log('add id = '+ id + ' & item = ' + item);
       this.mainFunc.addToCart(id);
       // this.mainFunc.cartItems.push(id);
       // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');

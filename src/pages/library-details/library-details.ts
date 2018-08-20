@@ -84,7 +84,6 @@ export class LibraryDetailsPage {
     let url = this.mainFunc.url + '/api/structure/' + this.secretId + '/view/' + this.id;
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-        console.log('Remote Course Details Data = ' + data);  
         this.attributes = [];
         this.slides_list = [];
         this.spes = [];
@@ -155,7 +154,6 @@ export class LibraryDetailsPage {
 
 
   addToCart(id,item){
-    console.log('Add item id = ' + id);
     
     this.mainFunc.cartItems.push(id);
     this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');
@@ -198,7 +196,6 @@ export class LibraryDetailsPage {
   getYoutubeImage (url) {
 
     let newUrl = 'https://img.youtube.com/vi/' + url + '/hqdefault.jpg';
-    // console.log(newUrl);
     return newUrl;
   }
 }

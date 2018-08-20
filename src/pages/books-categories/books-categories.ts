@@ -162,7 +162,6 @@ export class BooksCategoriesPage {
       // Load Main Home Page Menu Data
       let localHomeMenudata = this.http.get('assets/coursespagelist.json').map(res => res.json());
       localHomeMenudata.subscribe(data => {
-        console.log('Courses = ' + data);
         this.homemenu = data.categories;
         // let slider_data = data.slider;
         // this.slider_Data_Store = slider_data;
@@ -173,7 +172,6 @@ export class BooksCategoriesPage {
       let localItemsdata = this.http.get('assets/beststores.json').map(res => res.json().items);
       localItemsdata.subscribe(data => {
         this.storelist = data;
-        console.log('List = ' + data);
   
       });
   
@@ -207,7 +205,6 @@ export class BooksCategoriesPage {
       });
     }
     addToCart(id,item){
-      console.log('add id = '+ id + ' & item = ' + item);
       this.mainFunc.addToCart(id);
       // this.mainFunc.cartItems.push(id);
       // this.mainFunc.showToast('تم إضافة المنتج لعربة التسوق');

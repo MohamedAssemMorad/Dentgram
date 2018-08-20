@@ -92,7 +92,7 @@ export class MatchMakingApplyPage {
             alert.present();
           }
 
-          console.log(filePath)
+          console.log("filePath", filePath);
         }).catch(err => 
             console.log(err)
         );
@@ -264,7 +264,6 @@ export class MatchMakingApplyPage {
   //         }
           
 
-  //         console.log(filePath)
   //       }).catch(err => 
   //           console.log(err)
   //       );
@@ -307,7 +306,6 @@ export class MatchMakingApplyPage {
             .map(res => res.json())
             .subscribe(data => {
               let containt_message = data.success;
-              console.log('Response Message = ' + containt_message);
               this.isLoadingNow = false;
               if (containt_message){
                 // clear All Data And Show Message For Submit The Add

@@ -53,7 +53,6 @@ export class StoresPage {
     let localItemsdata = this.http.get('assets/storelist.json').map(res => res.json().items);
     localItemsdata.subscribe(data => {
       this.storelist = data;
-      console.log('List = ' + data);
 
     });
 

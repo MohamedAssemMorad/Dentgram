@@ -150,7 +150,6 @@ export class UsedAdsDetailsPage {
     let url = this.mainFunc.url + '/api/structure/used-items/view/' + this.id;
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-        console.log('Remote itemData = ' + data);  
         this.attributes = [];
         this.slides_list = [];
         this.spes = [];

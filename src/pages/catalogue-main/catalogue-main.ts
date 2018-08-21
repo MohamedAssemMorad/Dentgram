@@ -175,7 +175,7 @@ export class CatalogueMainPage {
       let url = this.mainFunc.url + '/api/structure/categories/'+ this.secretid +'/0'
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
-
+      console.log("categories remote data", data);
 
         let data2: any[];
         data2 = [];
@@ -218,7 +218,7 @@ export class CatalogueMainPage {
 
       let localHomeMenudata = this.http.get('assets/cataloguelist.json').map(res => res.json());
       localHomeMenudata.subscribe(data => {
-        console.log('Catalogue = ' + data);
+        console.log('cataloguelist' , data);
         // this.homemenu = data.categories;
         // let slider_data = data.slider;
         this.slider_Data_Store = data.slider;

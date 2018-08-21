@@ -445,10 +445,10 @@ export class MainFunctionsProvider {
     return re;
   }
 
-  openSlider(arr){
-    if(arr != null){
-      console.log("openSlider", arr.target + ' + ' + arr.id);
-      this.events.publish('application:openSlide',arr);
+  openSlider(action){
+    if(action != null){
+      console.log("openSlider", action.target + ' + ' + action.id);
+      this.events.publish('application:openSlide',action);
     }
   }
 }

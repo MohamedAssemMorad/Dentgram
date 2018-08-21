@@ -129,6 +129,8 @@ export class UsedAdsListPage {
             let url = this.mainFunc.url + '/api/structure/used-items/category/' + this.catId + '/' + this.city_id;
             let localHomeMenudata2 = this.http.get(url).map(res => res.json());
             localHomeMenudata2.subscribe(dataall => {
+              console.log("remote buyandsell data", dataall);
+              
               let data = [];
               data = dataall.used_items;
               this.slider_Data = dataall.slides;
@@ -205,7 +207,6 @@ export class UsedAdsListPage {
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.ionViewDidEnter(currentIndex);
-    console.log('slideInView: '+this.slideInView);
     if(this.slideInView == true){
       if(this.slider_Data[Number(currentIndex - 1)] != undefined){
         let slider_id = this.slider_Data[Number(currentIndex - 1)].id;
@@ -221,9 +222,11 @@ export class UsedAdsListPage {
     }
   }
 
-  openSlider(arr,slide_id)
-  {
-    if(arr != null){
+  openSlider(action,slide_id)
+  {      
+    if(action != null){
+      this.mainFunc.openSlider(action);
+      
       if(this.slider_Data[Number(slide_id)] != undefined){
         let slider_id = this.slider_Data[Number(slide_id)].id;
         if(this.slideClicked.indexOf(slider_id) <= -1){
@@ -235,7 +238,7 @@ export class UsedAdsListPage {
           });
         }
       }
-      this.mainFunc.openSlider(arr);
+      
     }
   }
 

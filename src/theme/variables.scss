@@ -269,6 +269,17 @@ ion-segment-button{
       // color: color($colors,fontDark);    
   }
 }
+
+.slider-link{
+    text-align: end;
+    color: #0062a7;
+    position: relative;
+    bottom: 0px;
+    z-index: 999;
+    margin: 2px 10px;
+    font-size: 16px;
+}
+
 .slide-img-size {
   // height: 100%;
   width: 100%;

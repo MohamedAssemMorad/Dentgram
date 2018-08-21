@@ -13,7 +13,6 @@ export class AuthProvider {
 
   constructor(public http: Http, public mainFunc: MainFunctionsProvider,
     public storage: Storage) {
-    console.log('Hello AuthProvider Provider');
   }
 
 

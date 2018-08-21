@@ -215,7 +215,7 @@ export class AuthLoginPage {
     loading.present();
   
     let fbToken = response.authResponse.accessToken;
-    console.log('fb Token :::::::: ' + fbToken);
+    console.log('fb Token', fbToken);
 
 
          let Url_request = this.mainFunc.url + "/api/auth/facebook";

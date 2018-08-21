@@ -52,7 +52,6 @@ export class MainFunctionsProvider {
     public loadingController: LoadingController,
     public events: Events,
     public platform: Platform) {
-    console.log('Hello MainFunctionsProvider Provider');
 
     // this.navCtrl = this.app.getActiveNav();
     
@@ -242,7 +241,7 @@ export class MainFunctionsProvider {
     let old_token : string;
     this.storage.get('token').then(token_id => {
       old_token = token_id;
-      console.log('Old Token : ' + old_token);
+      console.log('Old Token', old_token);
       
       // Refresh Token From The Server
      let full_url = this.url + '/api/auth/refresh?token=' + old_token;
@@ -251,7 +250,7 @@ export class MainFunctionsProvider {
         this.storage.set('token', data.token);
         // this.token = data.token;
 
-        console.log('New Token : ' + data.token);
+        console.log('New Token', data.token);
      },(error) => {
       this.storage.remove('token');
       this.storage.remove('pass_reqister');
@@ -334,19 +333,19 @@ export class MainFunctionsProvider {
           // History Type have data so we can check if item added before
           
           let count = oldarr.length;
-          console.log('Oldarr Counter : ' + count);
+          console.log('Oldarr Counter', count);
           if (count > 10){
             count = 10;
           }
 
 
-          console.log('old array = ' + oldarr);
+          console.log('old array', oldarr);
           newarr.push(name);
           for (let i = 0; i < (count); i ++){
             let olditem = oldarr[i];
             
-            console.log('Current i : ' + i);
-            console.log('old item = ' + olditem);
+            console.log('Current i', i);
+            console.log('old item', olditem);
 
             if(olditem === name){
 
@@ -447,7 +446,6 @@ export class MainFunctionsProvider {
 
   openSlider(action){
     if(action != null){
-      console.log("openSlider", action.target + ' + ' + action.id);
       this.events.publish('application:openSlide',action);
     }
   }

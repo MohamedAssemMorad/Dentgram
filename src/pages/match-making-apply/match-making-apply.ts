@@ -81,8 +81,8 @@ export class MatchMakingApplyPage {
 
             this.file_url = filePath.toLowerCase();
             this.filename = filename;
-            console.log('File URI : ' + filePath);
-            console.log('File Name : ' + filename);
+            console.log('File URI', filePath);
+            console.log('File Name', filename);
             
           }else{
             let alert = this.alertCtrl.create({
@@ -92,7 +92,7 @@ export class MatchMakingApplyPage {
             alert.present();
           }
 
-          console.log("filePath", filePath);
+          console.log('filePath', filePath);
         }).catch(err => 
             console.log(err)
         );
@@ -348,7 +348,7 @@ export class MatchMakingApplyPage {
   
               // this.loading.dismiss();
 
-              console.log('Error In Add Address = '  + error.status);
+              console.log('Error In Add Address', error.status);
               
               if (error.status === 422){
   

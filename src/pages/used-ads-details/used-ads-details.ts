@@ -225,13 +225,10 @@ export class UsedAdsDetailsPage {
   isLogged()
   {
     this.storage.get('token').then(data => {
-      console.log('token = '+data);
       if (data !== null) {
-        console.log('iam true');
         this.ifIsLogged = true;
         return true;
       }else{
-        console.log('iam false');
         this.ifIsLogged = false;
         return false;
       }
@@ -241,14 +238,11 @@ export class UsedAdsDetailsPage {
   authIsLogged(id)
   {
     this.storage.get('token').then(data => {
-      console.log('token = '+data);
       if (data !== null) {
-        console.log('iam true');
         this.ifIsLogged = true;
         this.navCtrl.push(UsedMsgPage, {id: id});
         return true;
       }else{
-        console.log('iam false');
         this.ifIsLogged = false;
         return false;
       }

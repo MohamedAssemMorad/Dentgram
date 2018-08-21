@@ -38,7 +38,7 @@ export class StoresPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BrandsPage');
+    console.log('ionViewDidLoad StoresPage');
 
     if (this.platform.dir() === "rtl") {
       this.direc = "ltr";

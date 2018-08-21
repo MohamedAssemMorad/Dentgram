@@ -147,7 +147,7 @@ export class CoursesListPage {
                 }else{
                   this.catId = this.navParams.get('id');  
                 }
-                console.log('catId:'+this.catId);
+                console.log('catId', this.catId);
 
                 this.secretid = this.navParams.get('secretid');
                 this.pagetitle = this.navParams.get('pagetitle');
@@ -190,7 +190,6 @@ export class CoursesListPage {
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.ionViewDidEnter(currentIndex);
-    console.log('slideInView: '+this.slideInView);
     if(this.slideInView == true){
       if(this.slider_Data_Store[Number(currentIndex - 1)] != undefined){
         let slider_id = this.slider_Data_Store[Number(currentIndex - 1)].id;
@@ -336,6 +335,8 @@ export class CoursesListPage {
 
       localHomeMenudata2.subscribe(dataall => {
         let data;
+        
+        console.log("remote data", dataall);
 
         if(dataall.slides){
           this.slider_Data_Store = dataall.slides;
@@ -407,7 +408,7 @@ export class CoursesListPage {
     
     click_Open_Page(id){
 
-      console.log('Id Clicked is : ' + id);
+      console.log('Id Clicked', id);
       this.select = '';
 
       switch (id) {

@@ -13,7 +13,6 @@ export class UploadProvider {
   constructor(public http: Http,
     public mainFunc: MainFunctionsProvider,
     private transfer: FileTransfer) {
-     console.log('Hello UploadProvider Provider');
   }
 
   upload_file(file_uri,token,num){
@@ -44,11 +43,11 @@ export class UploadProvider {
             // success
             // alert("success");
             // alert("data : " + JSON.stringify(data));
-            console.log(JSON.stringify(data));
+            console.log("upload", JSON.stringify(data));
           }, (err) => {
             // error
             // alert("error : " + JSON.stringify(err));
-            console.log(JSON.stringify(err));
+            console.log("err", JSON.stringify(err));
             
           });
 

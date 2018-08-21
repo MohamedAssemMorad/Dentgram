@@ -96,10 +96,11 @@
   <div *ngIf="slider_Data.length > 0" class="slide-img-size" dir="ltr">
     <div>
       <ion-slides id="slider" (ionSlideDidChange)="slideChanged()" speed="500" loop="true" spaceBewteen="15" pager>
-        <ion-slide class="ion-slide" *ngFor='let slide of slider_Data'>
+        <ion-slide class="ion-slide" *ngFor='let slide of slider_Data; let i = index'>
           <div (click)="openSlider(slide.action,slide.id)">
             <img class="slide-img-size" [ngClass]="{tablet: isTabletOriPad}" [src]="slide.url.full">
           </div>
+          <div class="slider-link" *ngIf="i != 0 && slide.action">{{ 'TAP_FOR_MORE' | translate:param }}</div>
         </ion-slide>
       </ion-slides>
     </div>

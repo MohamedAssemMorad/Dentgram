@@ -115,10 +115,8 @@ export class MyApp {
                             events.subscribe('application:isLogged', (token) => {
                               if(token !== false){
                                 this.isLogged = true;
-                                console.log(token, 'is Logged in = true');
                               }else{
                                 this.isLogged = false;
-                                console.log(token, 'is Logged in = false');
                               }
                               this.storage.get('thumb').then((val) => {
                                 console.log("imageeee", val);
@@ -204,7 +202,7 @@ export class MyApp {
                         events.subscribe('application:language', (language) => {
                           
                           this.storage.get('language').then((val) => {
-                            console.log('Language -- : ' + val);
+                            console.log('Language', val);
                             
 
                             if(val === null || val === "") {
@@ -368,7 +366,6 @@ export class MyApp {
   }
 
   ngOnInit() {
-    console.log('ION VIEW LOADED');
     // this.storage.get('token').then( token => {
     //       let url = this.mainFunc.url + '/api/user/profile?token=' + token;
     //       let localdata_content = this.http.get(url).map(res => res.json());
@@ -390,10 +387,8 @@ export class MyApp {
     this.events.subscribe('application:isLogged', (token) => {
       if(token !== false){
         this.isLogged = true;
-        console.log(token, 'is Logged in = true');
       }else{
         this.isLogged = false;
-        console.log(token, 'is Logged in = false');
       }
       this.storage.get('thumb').then((val) => {
         this.thumb = val;
@@ -419,7 +414,7 @@ export class MyApp {
   menuClick(sub,pagename){
     this.openCat = sub;
     this.activePage = pagename;
-    console.log('Selected page : ' +  pagename);
+    console.log('Selected page', pagename);
     let pageClass: any;
     let openType: any;
     let select: any;
@@ -604,11 +599,10 @@ export class MyApp {
         localHomeMenudata2 = this.http.get(urlx).map(res => res.json());  
         localHomeMenudata2.subscribe(data => {
           let dataarr: any = data;
-          console.log('App Refe = ' + dataarr);
 
           for (let index = 0; index < dataarr.length; index++) {
             const element = dataarr[index];
-            console.log(element);
+            console.log("el"+index, element);
           }
           let ss1 = +data[0].s1;
           let ss2 = +data[0].s2;

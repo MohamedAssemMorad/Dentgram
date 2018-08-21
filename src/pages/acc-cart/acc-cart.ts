@@ -95,7 +95,7 @@ export class AccCartPage {
               this.isCartHaveData = false;
             }
           }
-          console.log('Storage Cart = ' + val);
+          console.log('Storage Cart', val);
         });
 
   }
@@ -105,7 +105,7 @@ export class AccCartPage {
       this.loadAddressData();
       // this.reloadAddresses = false;
     // }
-    console.log( 'view will enter AccCart' );
+    console.log( 'ionViewWillEnter accCartPage' );
   }
   addNewAddress() {
     // let myData = {
@@ -203,7 +203,7 @@ export class AccCartPage {
 
       "items" : this.cartitemslist
     }
-    console.log('Card Sent Data : ' + body_application);
+    console.log('Card Sent Data', body_application);
 
     this.storage.get('token').then(token_id => {
       this.token = token_id;
@@ -224,13 +224,13 @@ export class AccCartPage {
         this.itemsList = data.details;
         // this.subTotal = data.total_price ;
         this.finalTotal = data.total_price ;
-        console.log('Cart Data : ' + data);
+        console.log('Cart Data', data);
 
         for (var index = 0; index < data.details.length; index++) {
           this.store_list.push(data.details[index].store_id);
           // this.shippingWayList.push(null);
         }
-        console.log('Stores Ids = ' + this.store_list);
+        console.log('Stores Ids', this.store_list);
       },(error) => {
 
       });
@@ -334,7 +334,7 @@ export class AccCartPage {
     this.small_tab_shipping = false;
     this.small_tab_address = true;
     this.small_tab_payment = false;
-    console.log('Shipping Methods = ' + this.shippingWayList);
+    console.log('Shipping Methods', this.shippingWayList);
     let validShipp = false;
     for (var index = 0; index < this.shippingWayList.length; index++) {
       if(this.shippingWayList[index] === null || this.shippingWayList[index] < 1){
@@ -548,7 +548,7 @@ export class AccCartPage {
         // this.loadData();
         
       },(error) => {
-        console.log('The Error is : ' + error);
+        console.log('The Error is', error);
       });
 
     });
@@ -620,7 +620,7 @@ export class AccCartPage {
   onBlur(id,min,max){
     this.OrderLogicControl(id,min,max)
     this.storage.set('cartNumber', this.mainFunc.cartItemsNumber);
-    console.log('Blur Event Tregered');
+    console.log('Blur Event Triggered');
     
   }
 

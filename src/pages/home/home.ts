@@ -242,7 +242,7 @@ ionViewDidEnter(){
     this.platform.ready().then(() => {
       if (this.platform.is('cordova')){
 
-          console.log('platform : ' + this.platform);
+          console.log('platform', this.platform);
                     
           this.fcm.subscribeToTopic('dentist_general');
 
@@ -305,7 +305,7 @@ ionViewDidEnter(){
         .subscribe(data => {
           console.log('FCM Registerd Successfuly');
         },(error) => {
-        console.log('The Error is : ' + error);
+        console.log('The Error', error);
       });
 
     }
@@ -360,7 +360,6 @@ ionViewDidEnter(){
   click_Open_catalogue_id(id,name_ar,name_en){
    
     if(this.pages[id] != 'false'){
-      console.log('custom view');
       let name = '';
       if (this.platform.dir() === "rtl") {
         name = name_ar;
@@ -379,7 +378,7 @@ ionViewDidEnter(){
   }
 
   click_Open_Page(id){ 
-      console.log('Id Clicked is : ' + id);
+      console.log('Id Clicked',  id);
       this.select = '';
 
       switch (id) {
@@ -449,10 +448,8 @@ ionViewDidEnter(){
       this.mainFunc.manuno6 == false
       ){
       this.OnLoadButton = true;
-    console.log('true: '+this.OnLoadButton);
     }else{
       this.OnLoadButton = false;
-    console.log('false: '+this.OnLoadButton);
     }
   }
 
@@ -467,11 +464,10 @@ ionViewDidEnter(){
         localHomeMenudata2 = this.http.get(urlx).map(res => res.json());  
         localHomeMenudata2.subscribe(data => {
           let dataarr: any = data;
-          console.log('App Refe = ' + dataarr);
 
           for (let index = 0; index < dataarr.length; index++) {
             const element = dataarr[index];
-            console.log(element);
+            console.log("el"+index, element);
           }
           let ss1 = +data[0].s1;
           let ss2 = +data[0].s2;

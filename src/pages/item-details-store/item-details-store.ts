@@ -164,7 +164,7 @@ export class ItemDetailsStorePage {
           this.price = data.unit_price;
           this.currency = data.currency;
 
-          console.log('Price : ' + this.price + ' ' + this.currency);
+          console.log('Price', this.price + ' ' + this.currency);
           
           // this.price_discount = data.;
 

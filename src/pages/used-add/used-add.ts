@@ -289,8 +289,8 @@ export class UsedAddPage {
       }
 
       // this.images_list = results;
-      console.log('images_list : ' + this.images_list);
-      console.log('photos_list : ' + this.photos_list);
+      console.log('images_list', this.images_list);
+      console.log('photos_list', this.photos_list);
 
       if(results.length < 1){
         this.images_list.push('assets/img/select_photo.png');
@@ -324,7 +324,7 @@ export class UsedAddPage {
           "price" : this.create.value['ad_price']
         }
 
-          console.log('The Form :' + ad_form);
+          console.log('The Form', ad_form);
         });    
 
       }else{
@@ -390,7 +390,7 @@ export class UsedAddPage {
           
 
           this.promisesArray.push(msg);
-          console.log('msg : ' + msg);
+          console.log('msg', msg);
 
           // alert("data : " + JSON.stringify(data));
         }, (err) => {
@@ -410,7 +410,7 @@ export class UsedAddPage {
         if(this.promisesArray.length === this.images_list.length){
          
           this.loading.dismiss();
-          console.log('Promises Array : ' + this.promisesArray);
+          console.log('Promises Array', this.promisesArray);
           console.log("All uploads done, we can now create the Ad");
 
         }
@@ -434,7 +434,7 @@ export class UsedAddPage {
     let target = this.images_list.length + 1;
     let loading_status = 0;
 
-    console.log('this.images_list = ' + this.images_list);
+    console.log('this.images_list', this.images_list);
     
     if(this.images_list.length > 1){
       for(var i = 1; i = this.images_list.length; i++){
@@ -589,9 +589,7 @@ export class UsedAddPage {
       }
 
 
-      let mmm = JSON.stringify(body_application);
-      console.log('Form Data is ++--++-- : ' + body_application);
-      console.log('Form Data is ++-mmm-++-- : ' + mmm);
+      console.log('Form Data body_application', body_application);
      
       this.storage.get('token').then(token => {
         let Url_request = this.mainFunc.url + "/api/ads/new?token=" + token;
@@ -600,7 +598,7 @@ export class UsedAddPage {
             .map(res => res.json())
             .subscribe(data => {
               let containt_message = data.success;
-              console.log('Response Message = ' + containt_message);
+              console.log('Response Message', containt_message);
               if (containt_message){
                 // clear All Data And Show Message For Submit The Add
                 this.loading.dismiss();
@@ -624,7 +622,7 @@ export class UsedAddPage {
   
               this.loading.dismiss();
 
-              console.log('Error In Add Address = '  + error.status);
+              console.log('Error In Add Address', error.status);
               
               if (error.status === 422){
   

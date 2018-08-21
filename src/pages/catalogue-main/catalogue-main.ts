@@ -218,7 +218,7 @@ export class CatalogueMainPage {
 
       let localHomeMenudata = this.http.get('assets/cataloguelist.json').map(res => res.json());
       localHomeMenudata.subscribe(data => {
-        console.log('cataloguelist' , data);
+        console.log('assets cataloguelist' , data);
         // this.homemenu = data.categories;
         // let slider_data = data.slider;
         this.slider_Data_Store = data.slider;

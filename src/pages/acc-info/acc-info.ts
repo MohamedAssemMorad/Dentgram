@@ -448,7 +448,7 @@ public async myUploadClick() {
 
         let file = this.pro_photo;
 
-        console.log(file);
+        console.log("file", file);
         
         if(file != undefined){
 
@@ -475,7 +475,7 @@ public async myUploadClick() {
             let msg_json = JSON.parse(data.response);
             this.uploaded_image = msg_json.message;
             this.pro_image = msg_json.message;
-            console.log(this.pro_image+':####:'+msg_json.message);
+            console.log(this.pro_image, msg_json.message);
             this.profileEdit();
           }, (err) => {
             this.showAlertMsg('Error happen code : ' + err.code + ' ---- source : ' + err.source + ' ------ Target : ' + err.target + ' ------ Http Status : ' + err.http_status);
@@ -554,7 +554,7 @@ profileEdit(){
               });
               alert.present();
 
-              console.log('Error Password Change = '  + error.status);
+              console.log('Error Password Change', error.status);
               
               if (error.status === 422){
                 this.loading.dismiss();
@@ -626,7 +626,7 @@ changePassword(){
           });
           alert.present();
 
-          console.log('Error Password Change = '  + error.status);
+          console.log('Error Password Change', error.status);
           
           if (error.status === 422){
 

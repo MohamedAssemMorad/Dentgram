@@ -83,7 +83,7 @@ export class AccFavPage {
 
       this.storage.get('fav').then((val) =>{
         let arr = val;
-        console.log('Storage Fav = ' + arr);
+        console.log('Storage Fav', arr);
       });
       this.loadData();      
   }

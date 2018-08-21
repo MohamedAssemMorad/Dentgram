@@ -154,8 +154,8 @@ export class AccAddressPage {
 
   createAddress(){
 
-    console.log('Data Is = ' + this.create.value);
-    console.log('Wrong Data Is = ' + this.create.errors);
+    console.log('Data', this.create.value);
+    console.log('Wrong Data', this.create.errors);
     if(!this.create.invalid){
       let body_application = {
         "city_id": this.create.value['city_id'],
@@ -171,20 +171,8 @@ export class AccAddressPage {
         "comments": this.create.value['comments']
       }
 
-      console.log('Data city_id Is  = ' + this.create.value['city_id']);
-      console.log('Data recipient_name Is  = ' + this.create.value['recipient_name']);
-      console.log('Data name Is  = ' + this.create.value['name']);
-      console.log('Data address1 Is  = ' + this.create.value['address1']);
-      console.log('Data address2 Is  = ' + this.create.value['address2']);
-      console.log('Data phone Is  = ' + this.create.value['phone']);
-      console.log('Data landline Is  = ' + this.create.value['landline']);
-      console.log('Data landmark Is  = ' + this.create.value['landmark']);
-      console.log('Data preferred Is  = ' + this.create.value['preferred']);
-      console.log('Data dont_call Is  = ' + this.create.value['dont_call']);
-      console.log('Data comments Is  = ' + this.create.value['comments']);
-
-      
-      console.log('Data Is = ' + body_application);
+      console.log('Data create', this.create);
+      console.log('Data body_application', body_application);
       
       this.storage.get('token').then(token_id => {
         this.token = token_id;

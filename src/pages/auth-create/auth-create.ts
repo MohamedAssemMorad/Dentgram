@@ -188,13 +188,13 @@ export class AuthCreatePage {
           },(error) => {
             loading.dismiss();
             if (error.status === 422){
-              console.log('"422 error handle" : ' + error );
+              console.log('422 error handle', error );
               let errText = JSON.parse(error._body);
               let inputErrors = errText.errors;
               
               let errorsHTML = '';
 
-              console.log("inputErrors", inputErrors);
+              console.log('inputErrors', inputErrors);
               for(let key in inputErrors){
                 errorsHTML = errorsHTML + '<li><b>' + key + ':</b> ' + inputErrors[key] + '</li>';
               }

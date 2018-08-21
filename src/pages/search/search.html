@@ -78,23 +78,46 @@
 <ion-content>
   <ion-row style="padding-left: 3px; padding-right: 8px;" no-lines no-padding>
     <ion-col no-lines col-12 *ngIf="showFilter">
-      <ion-item>
-        <ion-label>{{ 'FILTER_BY' | translate:param }}</ion-label>
-        <ion-select interface="popover" (ionChange)="onFilterByChange($event)" [(ngModel)]="filterBy" okText="{{ 'OK' | translate:param }}" cancelText="{{ 'CANCEL' | translate:param }}">
-            <ion-option *ngFor="let op of filterOptions" [value]="op">{{ op | translate:param }}</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-col>
-
-    <ion-col *ngIf="city_list">
       <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>
-        <ion-label class="bg10">choose city</ion-label>
-        <ion-select interface="popover" class="bg10"  dir="{{dir}}">
-          <ion-option *ngFor="let c of city_list; let i = index" [value]="c" >{{ c.name_en }}</ion-option>
+        <ion-label class="bg10">{{ 'FILTER_BY' | translate:param }}</ion-label>
+        <ion-select interface="popover" class="bg10" dir="{{dir}}" (ionChange)="onFilterByChange($event)" [(ngModel)]="filterBy">
+          <ion-option *ngFor="let op of filterOptions" [value]="op">{{ op | translate:param }}</ion-option>
         </ion-select>
       </ion-item>
     </ion-col>
 
+    <ion-col *ngIf="filterBy == 'LOCATION_FILTER'">
+      <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>
+        <ion-label class="bg10">{{ 'CHOOSE_CITY' | translate:param }}</ion-label>
+        <ion-select interface="popover" class="bg10" dir="{{dir}}" (ionChange)="onFilterByValueChange($event)" [(ngModel)]="filterByValue">
+          <ion-option *ngFor="let c of city_list; let i = index" [value]="c.id">{{ platform.dir() === 'ltr'? c.name_en: c.name_ar }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+
+    <ion-col *ngIf="filterBy == 'CATEGORY_FILTER'">
+      <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>
+        <ion-label class="bg10">{{ 'CHOOSE_CATEGORY' | translate:param }}</ion-label>
+        <ion-select interface="popover" class="bg10" dir="{{dir}}" (ionChange)="onFilterByValueChange($event)" [(ngModel)]="filterByValue">
+          <ion-option *ngFor="let c of category_list; let i = index" [value]="c.id">{{ platform.dir() === 'ltr'? c.name_en: c.name_ar }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+
+    <ion-col *ngIf="filterBy == 'COURSE_PROVIDER_FILTER'">
+      <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>
+        <ion-label class="bg10">{{ 'CHOOSE_COURSE_PROVIDER' | translate:param }}</ion-label>
+        <ion-input class="bg10" dir="{{dir}}" [(ngModel)]="filterByValue" (ionChange)="onFilterByValueChange($event)"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col *ngIf="filterBy == 'DATE_FILTER'">
+      <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>
+        <ion-label class="bg10">{{ 'CHOOSE_DATE' | translate:param }}</ion-label>
+        <ion-datetime class="bg10" dir="{{dir}}" displayFormat="MM/DD/YYYY" [(ngModel)]="filterByValue" cancelText="{{ 'CANCEL' | translate:param }}"
+          doneText="{{ 'OK' | translate:param }}" (ionChange)="onFilterByValueChange($event)"></ion-datetime>
+      </ion-item>
+    </ion-col>
 
     <ion-col col-9 no-lines>
       <ion-searchbar no-lines [(ngModel)]="searchTerm" placeholder="{{ 'SEARCH' | translate:param }}" [formControl]="searchControl"
@@ -105,7 +128,7 @@
     </ion-col>
   </ion-row>
 
- 
+
   <!-- <ion-row *ngIf="dir === 'rtl'">
     <ion-col>
       <ion-item dir="{{dir}}" class="selectDiv titleDiv" no-lines>

@@ -127,6 +127,7 @@ export class UsedAdsListPage {
           this.storage.get('city_id').then((city_id) => {
             this.city_id = city_id;
             let url = this.mainFunc.url + '/api/structure/used-items/category/' + this.catId + '/' + this.city_id;
+            console.log("url", url);
             let localHomeMenudata2 = this.http.get(url).map(res => res.json());
             localHomeMenudata2.subscribe(dataall => {
               console.log("remote buyandsell data", dataall);

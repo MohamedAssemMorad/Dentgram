@@ -600,10 +600,11 @@ export class MyApp {
         localHomeMenudata2.subscribe(data => {
           let dataarr: any = data;
 
-          for (let index = 0; index < dataarr.length; index++) {
-            const element = dataarr[index];
-            console.log("el"+index, element);
-          }
+          // for (let index = 0; index < dataarr.length; index++) {
+          //   const element = dataarr[index];
+          //   console.log(element);
+          // }
+          
           let ss1 = +data[0].s1;
           let ss2 = +data[0].s2;
           let ss3 = +data[0].s3;

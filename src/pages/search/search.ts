@@ -92,11 +92,14 @@ export class SearchPage {
   filterOptions: string[] = [];
   showFilter: boolean = false;
   filterBy: string;
+  filterByValue: string;
   city_list = [];
   city_list_ar = [];
   city_list_en = [];
+  category_list = [];
   loader: any;
   allData = [];
+  secretid: string;
 
   constructor(public navCtrl: NavController,
     public mainFunc: MainFunctionsProvider,
@@ -108,7 +111,7 @@ export class SearchPage {
     public navParams: NavParams,
     public dataService: DataProvider,
     public loadingController: LoadingController,
-    private http: Http,) {
+    private http: Http) {
 
     events.subscribe('application:isLogged', (token) => {
       this.storage.get('thumb').then((val) => {
@@ -132,50 +135,64 @@ export class SearchPage {
     this.callHistorysearches();
   }
 
-  getCities (){
-        let url = this.mainFunc.url + '/api/auth/register';
-        this.showLoading('', true);
-        let localdata_content = this.http.get(url).map(res => res.json().countries);
-        
-        localdata_content.subscribe(data => {
-          if (data.length > 0){
-            this.dismissLoading();
-          }
-
-          this.allData = data;
-
-          let id;
-        for (let index = 0; index < this.allData.length; index++) {
-          const element = this.allData[index];
-          if (element.name_en === 'Egypt') {
-            id = index;
-            break;
-          }
-        }
-
-        this.city_list = this.allData[id].cities;
-        });
-
-        
-
-        
+  getCategories() {
+    let url = this.mainFunc.url + '/api/structure/categories/' + this.secretid + '/0';
+    let localHomeMenudata2 = this.http.get(url).map(res => res.json());
+    localHomeMenudata2.subscribe(data => {
+      this. category_list = data;
+    });
   }
 
-  showLoading(message: string, state: boolean){
+  getCities() {
+    let url = this.mainFunc.url + '/api/auth/register';
+    this.showLoading('', true);
+    let localdata_content = this.http.get(url).map(res => res.json().countries);
+
+    localdata_content.subscribe(data => {
+      if (data.length > 0) {
+        this.dismissLoading();
+      }
+
       
+      this.allData = data;
+
+      let id;
+      let country_id;
+      this.storage.get('country_id').then((val) => { 
+        if (val){ 
+          country_id = val; 
+
+          for (let index = 0; index < this.allData.length; index++) {
+            const element = this.allData[index];
+            if (element.id === country_id) {
+              id = index;
+              break;
+            }
+          }
+        
+          this.city_list = this.allData[id].cities;
+        } 
+      });
+      
+    });
+
+  }
+
+  showLoading(message: string, state: boolean) {
+
     this.loader = this.loadingController.create({
       content: message
-    });  
-  
-    if(!state){
-      this.dismissLoading(); 
-    }else{
+    });
+
+    if (!state) {
+      this.dismissLoading();
+    } else {
       this.loader.present();
     }
-    
+
   }
 
-  dismissLoading(){
+  dismissLoading() {
     setTimeout(() => {
       this.loader.dismiss();
     }, 50);
@@ -218,23 +235,38 @@ export class SearchPage {
       if (prevSecretId.indexOf("course") > -1) {
         this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER", "COURSE_PROVIDER_FILTER"];
         this.showFilter = true;
+        this.secretid = "for_course";
       } else if (prevSecretId.indexOf("event") > -1) {
         this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
         this.showFilter = true;
+        this.secretid = "for_event";
       } else if (prevSecretId.indexOf("librar") > -1) {
         this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
         this.showFilter = true;
+        this.secretid = "for_library";
       }
     } else if (prevPageName.indexOf("UsedAds") > -1) {
       this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER"];
       this.showFilter = true;
+      this.secretid = "for_used";
     }
   }
 
   onFilterByChange(selectedValue: any) {
-    if(selectedValue === 'LOCATION_FILTER')
+    this.filterByValue = undefined;
+    this.city_list = [];
+    this.category_list = [];
+
+    if (selectedValue === 'LOCATION_FILTER')
       this.getCities();
 
+    if (selectedValue === 'CATEGORY_FILTER')
+      this.getCategories();
+
+    this.setFilteredItems();
+  }
+
+  onFilterByValueChange(selectedValue: any) {
     this.setFilteredItems();
   }
 
@@ -248,12 +280,12 @@ export class SearchPage {
     this.storage.get('city_id').then(city_id => {
       let datarecived;
 
-      if(this.filterBy){
-        datarecived = this.dataService.filterItemsBy(this.searchTerm, this.type, city_id, this.filterBy);
-      }else{
+      if (this.filterBy) {
+        datarecived = this.dataService.filterItemsBy(this.searchTerm, this.type, city_id, this.filterBy, this.filterByValue);
+      } else {
         datarecived = this.dataService.filterItems(this.searchTerm, this.type, city_id);
       }
-      
+
       datarecived.subscribe(data => {
         this.items = data;
         this.searching = false;

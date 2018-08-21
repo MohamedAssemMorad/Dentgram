@@ -172,7 +172,8 @@ export class CatalogueMainPage {
 
       // Load Main Home Page Menu Data
       // let url = this.mainFunc.url + '/api/structure/categories/for_catalogue/0'
-      let url = this.mainFunc.url + '/api/structure/categories/'+ this.secretid +'/0'
+      let url = this.mainFunc.url + '/api/structure/categories/'+ this.secretid +'/0';
+      console.log("url", url);
       let localHomeMenudata2 = this.http.get(url).map(res => res.json());
       localHomeMenudata2.subscribe(data => {
       console.log("categories remote data", data);

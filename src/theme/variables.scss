@@ -199,9 +199,9 @@ ion-segment-button{
 .homeLogo {
   max-height: 36px;
   height: 32px;
-  text-align: center;
-  margin-left: 60px;
-  margin-right: 60px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .header {
   // margin-bottom: 50px;

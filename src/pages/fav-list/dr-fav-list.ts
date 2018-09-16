@@ -93,7 +93,7 @@ export class FavoritePage {
    
   
     addToFav(item){
-      this.mainFunc.addToFav(item);
+      // this.mainFunc.addToFav(item);
     }
     removeFromFav(item){
   

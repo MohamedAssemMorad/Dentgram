@@ -215,7 +215,7 @@ export class BooksListPage {
       item.addButtonState = 'idle';
     }
     addToFav(item){
-      this.mainFunc.addToFav(item);
+      // this.mainFunc.addToFav(item);
     }
     removeFromFav(item){
   

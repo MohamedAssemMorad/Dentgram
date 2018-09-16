@@ -132,7 +132,7 @@ export class AccFavPage {
     item.addButtonState = 'idle';
   }
   addToFav(item){
-    this.mainFunc.addToFav(item);
+    // this.mainFunc.addToFav(item);
   }
   
   deleteFromFav(id){

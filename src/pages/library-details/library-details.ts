@@ -164,7 +164,7 @@ export class LibraryDetailsPage {
     // item.addButtonState = 'idle';
   }
   addToFav(item){
-    this.mainFunc.addToFav(item);
+    // this.mainFunc.addToFav(item);
   }
   removeFromFav(item){
 

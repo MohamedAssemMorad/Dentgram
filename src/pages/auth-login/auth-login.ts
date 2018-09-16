@@ -143,6 +143,7 @@ export class AuthLoginPage {
       
       if(data.message === "Successfully signed in user!"){
         this.storage.set('token', data.token);
+        this.storage.set('userId', data.id);
         this.storage.set('pass_reqister', 'true');
         this.storage.set('name', data.name);
         this.storage.set('thumb', data.thumb);

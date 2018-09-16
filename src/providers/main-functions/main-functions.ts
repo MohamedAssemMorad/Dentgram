@@ -94,10 +94,21 @@ export class MainFunctionsProvider {
     toast.present();
   }
 
-  addToFav(item){
+  addToFav(item, flag){
+    console.log(item);
     this.favItems.push(item);
     this.storage.set('fav',this.favItems);
     this.showToast('تم إضافة المنتج لقائمة التفضيلات');
+
+    // add fav item on server
+    let full_url = this.url + '/api/favorite?flag=' + flag + '&item_id=' +item+'&user_id='+ this.storage.get('userId');;
+    let recivedData = this.http.get(full_url).map(res => res.json());
+    recivedData.subscribe(data => {
+
+       console.log('New Token', data.token);
+    },(error) => {
+     
+    });
   }
 
   addToCart(item){

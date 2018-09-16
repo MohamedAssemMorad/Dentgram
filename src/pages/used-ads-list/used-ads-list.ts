@@ -423,7 +423,7 @@ export class UsedAdsListPage {
     item.addButtonState = 'idle';
   }
   addToFav(item){
-    this.mainFunc.addToFav(item);
+    // this.mainFunc.addToFav(item);
   }
   removeFromFav(item){
     this.mainFunc.deleteFromFav(item);

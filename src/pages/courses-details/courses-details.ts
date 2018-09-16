@@ -7,7 +7,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { PhotoViewer } from '@ionic-native/photo-viewer';
-
+import { Storage } from '@ionic/storage';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -29,6 +29,7 @@ export class CoursesDetailsPage {
   // itemRate = 4.6;
   // itemId = '1';
 
+  isLogged: boolean = false;
   id: any;
   name: any;
   description: any;
@@ -67,6 +68,7 @@ export class CoursesDetailsPage {
             public mainFunc: MainFunctionsProvider,
             public translate: TranslateService,
             public platform: Platform,
+            public storage: Storage,
             private photoViewer: PhotoViewer) {
           // this.itemTitle = "عبارة عن جهاز يتم فيه توليد قوى الطرد المركزي عن طريق الدوران حيث تتجه الجزيئات الأكثر ثقالة إلى الخارج بعيدا عن محور الدوران";
 
@@ -81,6 +83,7 @@ export class CoursesDetailsPage {
           // });
           this.allData = [];
           this.mainFunc.dismissLoading();
+          this.isLoggedIn()
           
   }
 
@@ -164,7 +167,7 @@ export class CoursesDetailsPage {
     // item.addButtonState = 'idle';
   }
   addToFav(item){
-    this.mainFunc.addToFav(item);
+    this.mainFunc.addToFav(item, "course");
   }
   removeFromFav(item){
     this.mainFunc.deleteFromFav(item);
@@ -174,6 +177,17 @@ export class CoursesDetailsPage {
   }
   openImage(url){
     this.photoViewer.show(url);
+  }
+
+  isLoggedIn()
+  {
+    this.storage.get('token').then(data => {
+      if (data !== null) {
+        this.isLogged = true;
+      }else{
+        this.isLogged = false;
+      }
+    });
   }
 
 }

@@ -156,7 +156,7 @@ export class AccCartPage {
     item.addButtonState = 'idle';
   }
   addToFav(item){
-    this.mainFunc.addToFav(item);
+    // this.mainFunc.addToFav(item);
   }
   
   openItemDetails(id){

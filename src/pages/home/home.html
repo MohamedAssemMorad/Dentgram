@@ -85,7 +85,7 @@
   <!--  Home Page Slider  -->
     <div class="wrapper" center>
       <div *ngFor="let item of homemenu; let i = index" center>
-        <div *ngIf="mainFunc.showButton(item.id) && !OnLoadButton" class="box {{ item.back_back }}" (tap)="click_Open_catalogue_id(item.id,item.name_ar,item.name)">
+        <div *ngIf="mainFunc.showButton(item.id) && !OnLoadButton" class="box {{ item.back_back }}" (tap)="showPopup(item.id,item.name_ar,item.name)">
           <div class="box2">
             <div class="subTable1stDiv">
               <img [src]="item.img">

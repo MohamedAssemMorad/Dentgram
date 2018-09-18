@@ -1,5 +1,5 @@
 import { Injectable, Inject, ViewChild } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers,RequestOptions } from '@angular/http';
 import { Nav, App, ToastController, LoadingController, Platform, Events } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
@@ -100,14 +100,29 @@ export class MainFunctionsProvider {
     this.storage.set('fav',this.favItems);
     this.showToast('تم إضافة المنتج لقائمة التفضيلات');
 
-    // add fav item on server
-    let full_url = this.url + '/api/favorite?flag=' + flag + '&item_id=' +item+'&user_id='+ this.storage.get('userId');;
-    let recivedData = this.http.get(full_url).map(res => res.json());
-    recivedData.subscribe(data => {
+    console.log('flaag is  ', flag);
+    console.log('itemId is  ', item);
 
-       console.log('New Token', data.token);
-    },(error) => {
-     
+    // add fav item on server
+    let favoriteBody = {
+
+      "flag" : flag,
+      "item_id" : item
+    }
+    this.storage.get('token').then( token => {
+      
+
+      let url = this.url + '/api/favorite';
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      headers.append('Authorization', 'Bearer ' + token );        
+      let options = new RequestOptions({headers: headers});
+      
+      this.http.post(url, JSON.stringify(favoriteBody) ,options).map(
+        res => res.json())
+        .subscribe(data => { 
+          console.log("favorite success " + JSON.stringify(data))
+        });
     });
   }
 

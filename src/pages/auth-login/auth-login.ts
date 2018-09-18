@@ -87,7 +87,7 @@ export class AuthLoginPage {
   cloudState: any = "in";
   loginState: any = "in";
   formState: any = "in";
-  FB_APP_ID: number = 133558750668213;
+  FB_APP_ID: number = 464365010729056;
   private login : FormGroup;
   dir: any;
   shouldAuth: boolean = false;
@@ -109,7 +109,7 @@ export class AuthLoginPage {
               public datepipe: DatePipe) {
     
                 this.fb.browserInit(this.FB_APP_ID, "v2.8");
-
+                console.log("facebook AppId  " + this.FB_APP_ID);
                 this.dir = this.platform.dir();
 
                 this.login = this.formBuilder.group({
@@ -140,10 +140,11 @@ export class AuthLoginPage {
 
     this.auth.login(this.login.value).subscribe(data => {
       loading.dismiss();
-      
+      console.log("userData", data);
+
       if(data.message === "Successfully signed in user!"){
         this.storage.set('token', data.token);
-        this.storage.set('userId', data.id);
+        // this.storage.set('userId', data.id);
         this.storage.set('pass_reqister', 'true');
         this.storage.set('name', data.name);
         this.storage.set('thumb', data.thumb);
@@ -179,6 +180,7 @@ export class AuthLoginPage {
 
   fbLoginWithToken(){
 
+    console.log("facebook login");
     let create: any;
     let country_id = '';
     let city_id = '';

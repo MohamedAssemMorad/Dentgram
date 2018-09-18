@@ -35,6 +35,7 @@ import { SearchPage } from "../../pages/search/search";
 import { UsedPage } from "../used/used";
 
 import { FCM } from '@ionic-native/fcm';
+import { AlertController } from 'ionic-angular';
 
 
 @Component({
@@ -123,6 +124,7 @@ export class HomePage {
                 public auth: AuthProvider,
                   public storage: Storage,
                     private fcm: FCM,
+                    private alertCtrl: AlertController,
                       public chkconn: ConnectivityServiceProvider) {
 
                 this.storelist = [];
@@ -356,6 +358,27 @@ ionViewDidEnter(){
     });   
   }
 
+  showPopup(id,name_ar,name_en) {
+    if(id == 1){
+      let alert = this.alertCtrl.create({
+        title: 'Catalogue',
+        message: 'This page still under development, data not compeleted',
+        buttons: [
+          {
+            text: 'Okay',
+            role: 'cancel',
+            handler: () => {
+              this.click_Open_catalogue_id(id,name_ar,name_en);
+            }
+          },
+        ]
+      });
+      alert.present();
+    }else{
+      this.click_Open_catalogue_id(id,name_ar,name_en);
+    }
+    
+  }
 
   click_Open_catalogue_id(id,name_ar,name_en){
    

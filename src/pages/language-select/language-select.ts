@@ -45,7 +45,7 @@ export class LanguageSelectPage {
 
   loader: any;
 
-  FB_APP_ID: number = 133558750668213;
+  FB_APP_ID: number = 464365010729056;
 
   private create : FormGroup;
 

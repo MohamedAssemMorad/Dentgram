@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { NavController, NavParams, ViewController, Slides, ActionSheetController, Platform, Content } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Slides, ActionSheetController, Platform, Content, LoadingController } from 'ionic-angular';
 import { MainFunctionsProvider } from '../../providers/main-functions/main-functions';
 import { trigger, state, style, animate, transition, group, keyframes } from '@angular/animations';
 import { Http } from '@angular/http';
@@ -11,9 +11,10 @@ import { UsedAdsDetailsPage } from "../../pages/used-ads-details/used-ads-detail
 import { UsedAdsPage } from "../../pages/used-ads/used-ads";
 import { TranslateService } from '@ngx-translate/core';
 import { AccountfPage } from "../../pages/accountf/accountf";
-
+import { FormControl } from '@angular/forms';
 import { SearchPage } from "../../pages/search/search";
-
+import { DataProvider } from "../../providers/data/data";
+import { SearchResultPage } from "../../pages/search-result/search-result";
 
 @Component({
   selector: 'page-used-ads-list',
@@ -71,23 +72,37 @@ export class UsedAdsListPage {
   catId: any;
   isGrid: boolean = true;
   bestrecommended: any[];
+  searchControl: FormControl;
+  searchTerm: string = '';
   cartBadgeState: string = 'idle';
   mobwidth: any;
   mobheight: any;
   direc: any;
+  showFilter: boolean = false;
+  filterBy: string;
+  filterByValue: string;
   direcR: any;
   city_id: any;
   secretid = "";
+  type = '';
+  filterOptions: string[] = [];
   slider_Data: any[];
   slider_Data_action: any[];
   subscription;
   isDataAvilable = true;
   current_page: number;
   can_load_more: boolean = false;
-
+  items: any;
+  searching: any = false;
   slideInView:boolean = true;
   slideViewed:any[] = [];
   slideClicked:any[] = [];
+  city_list = [];
+  city_list_ar = [];
+  city_list_en = [];
+  category_list = [];
+  allData = [];
+  loader: any;
   @ViewChild(Content)
   content:Content;
 
@@ -101,6 +116,8 @@ export class UsedAdsListPage {
             private changeDetector: ChangeDetectorRef,
               private platform: Platform,
               public storage: Storage,
+              public loadingController: LoadingController,
+              public dataService: DataProvider,
               public translate: TranslateService) {
 
 
@@ -124,6 +141,8 @@ export class UsedAdsListPage {
           //////////////////////////////////////////////
 
           // this.mainFunc.showLoading('',true);
+          this.searchControl = new FormControl();
+          this.type = this.navParams.get('type');
           this.storage.get('city_id').then((city_id) => {
             this.city_id = city_id;
             let url = this.mainFunc.url + '/api/structure/used-items/category/' + this.catId + '/' + this.city_id;
@@ -173,11 +192,106 @@ export class UsedAdsListPage {
                 data2.push(item);
               }
               this.bestrecommended = data2;
-              
             });
 
         });
 
+  }
+
+  onFilterByValueChange(selectedValue: any) {
+    this.setFilteredItems();
+  }
+
+  showLoading(message: string, state: boolean) {
+
+    this.loader = this.loadingController.create({
+      content: message
+    });
+
+    if (!state) {
+      this.dismissLoading();
+    } else {
+      this.loader.present();
+    }
+
+  }
+
+  dismissLoading() {
+    setTimeout(() => {
+      this.loader.dismiss();
+    }, 50);
+  }
+
+  getCities() {
+    let url = this.mainFunc.url + '/api/auth/register';
+    this.showLoading('', true);
+    let localdata_content = this.http.get(url).map(res => res.json().countries);
+
+    localdata_content.subscribe(data => {
+      if (data.length > 0) {
+        this.dismissLoading();
+      }
+
+      
+      this.allData = data;
+
+      let id;
+      let country_id;
+      this.storage.get('country_id').then((val) => { 
+        if (val){ 
+          country_id = val; 
+
+          for (let index = 0; index < this.allData.length; index++) {
+            const element = this.allData[index];
+            if (element.id === country_id) {
+              id = index;
+              break;
+            }
+          }
+        
+          this.city_list = this.allData[id].cities;
+        } 
+      });
+      
+    });
+
+  }
+
+  getCategories() {
+    let url = this.mainFunc.url + '/api/structure/categories/' + this.secretid + '/0';
+    let localHomeMenudata2 = this.http.get(url).map(res => res.json());
+    localHomeMenudata2.subscribe(data => {
+      this. category_list = data;
+    });
+  }
+
+  onSearchInput() {
+    this.items = [];
+    if (this.searchTerm.length > 1) {
+      this.searching = true;
+    }
+  }
+
+  openSearchResultPage() {
+    this.navCtrl.push(SearchResultPage, {
+      'type': this.type,
+      'query': this.searchTerm,
+      'filterBy': this.filterBy
+    });
+  }
+
+  onFilterByChange(selectedValue: any) {
+    this.filterByValue = undefined;
+    this.city_list = [];
+    this.category_list = [];
+
+    if (selectedValue === 'LOCATION_FILTER')
+      this.getCities();
+
+    if (selectedValue === 'CATEGORY_FILTER')
+      this.getCategories();
+
+    this.setFilteredItems();
   }
 
   ionViewDidEnter(currentIndex) {
@@ -240,6 +354,49 @@ export class UsedAdsListPage {
         }
       }
       
+    }
+  }
+
+  setFilteredItems() {
+    this.items = [];
+
+    this.storage.get('city_id').then(city_id => {
+      let datarecived;
+
+      if (this.filterBy) {
+        datarecived = this.dataService.filterItemsBy(this.searchTerm, this.type, city_id, this.filterBy, this.filterByValue);
+      } else {
+        datarecived = this.dataService.filterItems(this.searchTerm, this.type, city_id);
+      }
+
+      datarecived.subscribe(data => {
+        this.items = data;
+        this.searching = false;
+      });
+    });
+  }
+
+  prepareFilter() {
+    let prevPageName = this.navCtrl.getPrevious().name;
+    let prevSecretId = this.navCtrl.getPrevious().data.secretid;
+    if (prevPageName.indexOf("Courses") > -1) {
+      if (prevSecretId.indexOf("course") > -1) {
+        this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER", "COURSE_PROVIDER_FILTER"];
+        this.showFilter = true;
+        this.secretid = "for_course";
+      } else if (prevSecretId.indexOf("event") > -1) {
+        this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
+        this.showFilter = true;
+        this.secretid = "for_event";
+      } else if (prevSecretId.indexOf("librar") > -1) {
+        this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER", "DATE_FILTER"];
+        this.showFilter = true;
+        this.secretid = "for_library";
+      }
+    } else if (prevPageName.indexOf("UsedAds") > -1) {
+      this.filterOptions = ["CATEGORY_FILTER", "LOCATION_FILTER"];
+      this.showFilter = true;
+      this.secretid = "for_used";
     }
   }
 
@@ -316,6 +473,12 @@ export class UsedAdsListPage {
       this.direc = "rtl";
       this.direcR = "ltr";  
     }
+
+    this.searchControl.valueChanges.debounceTime(500).subscribe(search => {
+      if (this.searchTerm.length > 1) {
+        this.setFilteredItems();
+      }
+    });
   }
 
   showSortingActionSheet(){

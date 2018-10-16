@@ -42,7 +42,7 @@
     "com-badrit-base64": "^0.2.0",
     "com-sarriaroman-photoviewer": "^1.1.18",
     "com.synconset.imagepicker": "^2.1.10",
-    "cordova-android": "^6.2.3",
+    "cordova-android": "6.2.3",
     "cordova-ios": "^4.5.0",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^1.1.7",
@@ -99,7 +99,8 @@
       "cordova-plugin-compat": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

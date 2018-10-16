@@ -362,7 +362,7 @@ ionViewDidEnter(){
     if(id == 1){
       let alert = this.alertCtrl.create({
         title: 'Catalogue',
-        message: 'This page still under development, data not compeleted',
+        message: 'Welcome to our digital dental directory. We work hard to put more than 2000 manufactures, 5000 distributors and 100,000 different products all together. In case you do not find what you are looking for, or you have any suggestions, please share it with us.' ,
         buttons: [
           {
             text: 'Okay',

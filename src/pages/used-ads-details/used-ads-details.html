@@ -61,13 +61,13 @@
         </div>
       </div>
 
-      <div class="cl1">
+      <div class="cl1" *ngIf="ifIsLogged">
 
-          <button class="canMessage" ion-button clear small icon-start *ngIf="!mainFunc.checkItemInFav(product_id)" (click)="mainFunc.addToFav(product_id)">
+          <button class="canMessage" ion-button clear small icon-start *ngIf="!mainFunc.checkItemInFav(product_id)" (click)="mainFunc.addToFav(product_id, flag)">
               <ion-icon  name ="heart-outline" ></ion-icon>
             </button>
     
-            <button class="canMessage" ion-button clear small icon-start *ngIf="mainFunc.checkItemInFav(product_id)" (click)="mainFunc.deleteFromFav(product_id)">
+            <button class="canMessage" ion-button clear small icon-start *ngIf="mainFunc.checkItemInFav(product_id)" (click)="mainFunc.addToFav(product_id, flag)">
                 <ion-icon  name ="md-heart" ></ion-icon>
             </button>
         

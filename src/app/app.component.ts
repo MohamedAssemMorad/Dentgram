@@ -16,7 +16,8 @@ import { StoresPage } from "../pages/stores/stores";
 import { UsedPage } from "../pages/used/used";
 import { AccAddressPage } from "../pages/acc-address/acc-address";
 import { AccContactUsPage } from "../pages/acc-contact-us/acc-contact-us";
-import { FavoritePage } from "../pages/fav-list/dr-fav-list";
+import { FavHome } from "../pages/fav-home/fav-home";
+import { NewsPage } from "../pages/news-page/news-page";
 import { AccFavPage } from "../pages/acc-fav/acc-fav";
 import { AccInfoPage } from "../pages/acc-info/acc-info";
 import { AccOrdersPage } from "../pages/acc-orders/acc-orders";
@@ -493,11 +494,16 @@ export class MyApp {
           select = '2';
           openType = 'out';
           break;
-        case 'FavoritePage':
-          pageClass = FavoritePage;
+        case 'FavHome':
+          pageClass = FavHome;
           select = '4';
           openType = 'out';
           break;
+        case 'NewsPage':
+          pageClass = NewsPage;
+          openType = 'in';
+          break;
+
         case 'AccContactUsPage':
           pageClass = AccContactUsPage;
           select = '4';
@@ -566,18 +572,9 @@ export class MyApp {
           openType = 'ChangeLanguage';
           break;
       }
-      if (openType === 'in'){
-        this.nav.setRoot(pageClass);
-        this.menuCtrl.close();
-      }else if (openType === 'out'){
-        this.nav.push(pageClass, {
-          'select' : select,
-          'title': pagetitle,
-          'secretid': secretid
-        });
 
-        this.menuCtrl.close();
-      }
+      this.showPopup(openType, pageClass, select,pagetitle,secretid)
+      
       if (openType === 'ChangeLanguage'){
         this.changeLang();
       }
@@ -586,6 +583,54 @@ export class MyApp {
       }
     }
     
+  }
+
+
+  showPopup(openType, pageClass, select,pagetitle,secretid) {
+
+    if(pageClass == BrandsPage){
+      let alert = this.alertCtrl.create({
+        title: 'Catalogue',
+        message: 'Welcome to our digital dental directory. We work hard to put more than 2000 manufactures, 5000 distributors and 100,000 different products all together. In case you do not find what you are looking for, or you have any suggestions, please share it with us.' ,
+        buttons: [
+          {
+            text: 'Okay',
+            role: 'cancel',
+            handler: () => {
+              if (openType === 'in'){
+                this.nav.setRoot(pageClass);
+                this.menuCtrl.close();
+              }else if (openType === 'out'){
+        
+                this.nav.push(pageClass, {
+                  'select' : select,
+                  'title': pagetitle,
+                  'secretid': secretid
+                });
+        
+                this.menuCtrl.close();
+              }
+            }
+          },
+        ]
+      });
+      alert.present();
+    }else{
+      if (openType === 'in'){
+        this.nav.setRoot(pageClass);
+        this.menuCtrl.close();
+      }else if (openType === 'out'){
+
+        this.nav.push(pageClass, {
+          'select' : select,
+          'title': pagetitle,
+          'secretid': secretid
+        });
+
+        this.menuCtrl.close();
+      }
+    }
+      
   }
 
     getAppPref(){

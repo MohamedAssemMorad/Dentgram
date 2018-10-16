@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-a
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { FavHome } from '../pages/fav-home/fav-home';
+import { FavCoursesListPage } from '../pages/fav-list-courses/dr-fav-list-courses';
 import { BuySellMainPage } from '../pages/buy-sell-main/buy-sell-main';
 import { ItemDetailsPage } from "../pages/item-details/item-details";
 import { CategorysPage } from "../pages/categorys/categorys";
@@ -26,7 +28,7 @@ import { UsedPage } from "../pages/used/used";
 import { AccAddressPage } from "../pages/acc-address/acc-address";
 import { AccContactUsPage } from "../pages/acc-contact-us/acc-contact-us";
 import { AccFavPage } from "../pages/acc-fav/acc-fav";
-import { FavoritePage } from "../pages/fav-list/dr-fav-list";
+import { NewsPage } from "../pages/news-page/news-page";
 import { AccInfoPage } from "../pages/acc-info/acc-info";
 import { AccOrdersPage } from "../pages/acc-orders/acc-orders";
 import { AuthSignoutPage } from "../pages/auth-signout/auth-signout";
@@ -131,6 +133,8 @@ export function createTranslateLoader(http: Http) {
   declarations: [
     MyApp,
     HomePage,
+    FavHome,
+    FavCoursesListPage,
     BuySellMainPage,
     ItemDetailsPage,
     CategorysPage,
@@ -146,7 +150,7 @@ export function createTranslateLoader(http: Http) {
     AccContactUsPage,
     AccInfoPage,
     AccFavPage,
-    FavoritePage,
+    NewsPage,
     AccOrdersPage,
     AuthSignoutPage,
     UsedAddPage,
@@ -211,6 +215,8 @@ export function createTranslateLoader(http: Http) {
   entryComponents: [
     MyApp,
     HomePage,
+    FavHome,
+    FavCoursesListPage,
     BuySellMainPage,
     ItemDetailsPage,
     CategorysPage,
@@ -226,7 +232,7 @@ export function createTranslateLoader(http: Http) {
     AccContactUsPage,
     AccInfoPage,
     AccFavPage,
-    FavoritePage,
+    NewsPage,
     AccOrdersPage,
     AuthSignoutPage,
     UsedAddPage,

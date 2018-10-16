@@ -95,14 +95,7 @@ export class MainFunctionsProvider {
   }
 
   addToFav(item, flag){
-    console.log(item);
-    this.favItems.push(item);
-    this.storage.set('fav',this.favItems);
-    this.showToast('تم إضافة المنتج لقائمة التفضيلات');
-
-    console.log('flaag is  ', flag);
-    console.log('itemId is  ', item);
-
+  
     // add fav item on server
     let favoriteBody = {
 
@@ -121,7 +114,18 @@ export class MainFunctionsProvider {
       this.http.post(url, JSON.stringify(favoriteBody) ,options).map(
         res => res.json())
         .subscribe(data => { 
-          console.log("favorite success " + JSON.stringify(data))
+          if(data.message === 'Successfully added to the favorites!'){
+            this.showToast('تم إضافة المنتج لقائمة التفضيلات');
+            this.favItems.push(item);
+            this.storage.set('fav',this.favItems);
+          }else{
+            this.showToast('تم ازالة المنتج لقائمة التفضيلات');
+            this.deleteFromFav(item);
+            this.storage.set('fav',this.favItems);
+          }
+            
+        },(error) => {
+          this.showToast('حدث خطأ ما , من فضلك حاول في وقت لاحق');
         });
     });
   }

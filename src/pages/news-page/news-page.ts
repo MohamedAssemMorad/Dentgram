@@ -38,12 +38,12 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 
 @Component({
-  selector: 'page-dr-fav-list',
-  templateUrl: 'dr-fav-list.html',
+  selector: 'page-news',
+  templateUrl: 'news-page.html',
 
 
 })
-export class FavoritePage {
+export class NewsPage {
   
   isSearchToggle: boolean = false;
   direc: any;

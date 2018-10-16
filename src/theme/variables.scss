@@ -180,8 +180,8 @@ ion-content {
 }
 
 .ion-content-below-slider-area-and-subheader{
-    margin-top:270px!important;
-    height: calc(100% - 270px);
+    margin-top:200px!important;
+    height: calc(100% - 200px);
 }
   
 .platform-webview.platform-ios.platform-cordova .ion-content-below-slider-area-and-subheader{
@@ -281,12 +281,12 @@ ion-segment-button{
 }
 
 .slide-img-size {
-  // height: 100%;
+  height: 100%;
   width: 100%;
 
   //min-height: 160px;
   // max-height: 400px;
-  overflow: hidden;
+//   overflow: hidden;
 }
 .titleDiv {
   padding-top: 10px;

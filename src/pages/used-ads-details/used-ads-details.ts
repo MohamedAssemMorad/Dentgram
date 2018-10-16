@@ -97,7 +97,7 @@ export class UsedAdsDetailsPage {
   slides_list: any;
   spes: any;
   toTraget: any;
-
+  flag = "product";
   discount: any;
   price: any;
   currency: any;
